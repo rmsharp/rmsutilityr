@@ -1,0 +1,24 @@
+Package: rmsutilityr
+Type: Package
+Title: Utility functions used for Primate Records Database support
+Version: 1.0.54
+Date: 2017-04-14
+Author: R. Mark Sharp <msharp@TxBiomed.org>
+Maintainer: R. Mark Sharp <msharp@TxBiomed.org>
+Description: Provides often used functions for report writing.
+Depends:
+    R (>= 3.1.2)
+Imports:
+    jsonlite,
+    knitr,
+    stats,
+    stringi,
+    lubridate,
+    tools,
+    utils,
+    XLConnect,
+    xtable
+Suggests:
+    testthat (>= 0.7.1)
+License: GPL-2
+RoxygenNote: 6.0.1
