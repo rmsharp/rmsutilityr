@@ -1,8 +1,8 @@
 Package: rmsutilityr
 Type: Package
 Title: Utility functions used for Primate Records Database support
-Version: 1.0.55
-Date: 2017-08-26
+Version: 1.0.56
+Date: 2017-08-28
 Author: R. Mark Sharp <msharp@TxBiomed.org>
 Maintainer: R. Mark Sharp <msharp@TxBiomed.org>
 Description: Provides often used functions for report writing.

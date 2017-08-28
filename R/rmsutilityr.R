@@ -13,7 +13,12 @@ get_deps <- function(path) {
   jj <- intersect(c("Depends", "Imports", "Suggests"), colnames(dcf))
   val <- unlist(strsplit(dcf[, jj], ","), use.names = FALSE)
   val <- gsub("\\s.*", "", trimws(val))
-  val[val != "R"]
+  val <- val[val != "R"]
+  val <- remove_these_str(.str = val, 
+                          expunge = c("base", "datasets", "graphics", 
+                                      "grDevices", "methods", "stats", "tools", 
+                                      "utils"), ignore_case = FALSE)
+  val
 }
 #' Make package dependency list
 #'
