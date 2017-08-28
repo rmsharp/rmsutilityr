@@ -4,6 +4,84 @@
 ## suppressPackageStartupMessages(library(XLConnect, quietly = TRUE))
 #' Has the sideeffect of writing out a LaTeX title page compatible with memoir.
 #'
+#'#' Written by Josh O'Brien on stackoverflow on May 13 '15 at 21:42
+#' @param path character vector of length one having the directory path to
+#' where new version of the custom package exists.
+#' @export
+get_deps <- function(path) {
+  dcf <- read.dcf(file.path(path, "DESCRIPTION"))
+  jj <- intersect(c("Depends", "Imports", "Suggests"), colnames(dcf))
+  val <- unlist(strsplit(dcf[, jj], ","), use.names = FALSE)
+  val <- gsub("\\s.*", "", trimws(val))
+  val[val != "R"]
+}
+#' Make package dependency list
+#'
+#' Gathers the dependencies from each source package and combines the lists
+#' without duplication.
+#'
+#' @param source_names character vector containing the names of the custom
+#' packages to be installed from source.
+#' @param path character vector of length one having the path to R's
+#' \code{library} directory, which contains the packages being updated from
+#' source. This may or may or may not be the same as the system wide
+#' \code{library} directory. It could be a user directory.
+#' @export
+make_package_dependency_list <- function(source_names, path) {
+  dependencies <- character(0)
+  for (name in source_names) {
+    dependencies <- unique(c(dependencies, get_deps(paste0(path, name))))
+  }
+  dependencies
+}
+#' Remove these strings
+#'
+#' Modified from rmsutilityr::remove_strings() by R. Mark Sharp. The
+#' modification was to remove a package dependency using the standard
+#' relational opporator "==" instead of stri_detect_regex().
+#' @param .str character vector that have tokens removed that match
+#' tokens within the \code{expunge} vector.
+#' @param expunge character vector of tokens to be removed from the
+#' \code{.str} vector if present.
+#' @param ignore_case boolean that determines whether or not case is ignored.
+#' Defaults to FALSE.
+#' @export
+remove_these_str <- function(.str, expunge, ignore_case = FALSE) {
+  if (ignore_case) {
+    tmp_str <- tolower(.str)
+    tmp_expunge <- tolower(expunge)
+  }
+  else {
+    tmp_str <- .str
+    tmp_expunge <- expunge
+  }
+  keep <- rep(TRUE, length(.str))
+  for (exp_str in tmp_expunge) {
+    keep <- !tmp_str == exp_str & keep
+  }
+  .str[keep]
+}
+#' Install R package from package source
+#'
+#' Takes a list of packages (\code{source_names}) and the path
+#' (\code{source_path}) to their common location and
+#' installs them into the \code{install_path} directory.
+#'
+#' @param source_names character vector having one source package name per
+#' cell.
+#' @param source_path character vector of length one having the directory
+#' path of where the package sources (*.tar.gz) reside.
+#' @param install_path character vector of length one having the directory
+#' path of where packages are to be installed.
+#' @export
+install_from_source <- function(source_names, source_path, install_path) {
+  for (source_name in source_names) {
+    source <- max(list.files(path = source_path,
+                             pattern = paste0(source_name, ".*.tar.gz")))
+    install.packages(paste0(source_path, source), type = "source", repos = NULL,
+                     lib = install_path)
+  }
+}
 #' Assumes the presence of the LaTeX package \code{titling} with the new command
 #' \code{\\subtitle}.
 #' \\usepackage{titling}
@@ -14,8 +92,6 @@
 #'     \\vskip0.5em}%
 #' }
 #' Capitalization is not modified by this function.
-
-
 #'
 #' @param title_str character vector of length 1 having the text of the title
 #' @param sub_title_str character vector of length 1 having the text of the
@@ -753,7 +829,6 @@ get_split_table <- function(df, fmt, cm = 15) {
 #' @import utils
 #' @export
 not_installed <- function(mypkg) !is.element(mypkg, installed.packages()[ , 1])
-
 #' Make a date character string given a date.
 #'
 #' This function takes a date and arguments about how to represent months
