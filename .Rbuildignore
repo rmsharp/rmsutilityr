@@ -2,3 +2,5 @@
 ^\.Rproj\.user$
 ^.*.MySCMServerInfo
 ^.*example_wkbk.xlsx$
+.travis.yml
+.gitignore
