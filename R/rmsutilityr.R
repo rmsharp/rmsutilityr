@@ -1,10 +1,6 @@
-## library(stringi, quietly = TRUE)
-## library(lubridate, quietly = TRUE)
-## library(xtable, quietly = TRUE)
-## suppressPackageStartupMessages(library(XLConnect, quietly = TRUE))
 #' Has the sideeffect of writing out a LaTeX title page compatible with memoir.
 #'
-#'#' Written by Josh O'Brien on stackoverflow on May 13 '15 at 21:42
+#' Written by Josh O'Brien on stackoverflow on May 13 '15 at 21:42
 #' @param path character vector of length one having the directory path to
 #' where new version of the custom package exists.
 #' @export
