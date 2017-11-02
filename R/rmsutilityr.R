@@ -94,6 +94,7 @@ remove_these_str <- function(.str, expunge, ignore_case = FALSE) {
 #' path of where the package sources (*.tar.gz) reside.
 #' @param install_path character vector of length one having the directory
 #' path of where packages are to be installed.
+#' @importFrom utils install.packages
 #' @export
 install_from_source <- function(source_names, source_path, install_path) {
   for (source_name in source_names) {
