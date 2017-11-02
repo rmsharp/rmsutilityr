@@ -6,3 +6,4 @@
 .gitignore
 ^README\.Rmd$
 ^README-.*\.png$
+installation.Rmd

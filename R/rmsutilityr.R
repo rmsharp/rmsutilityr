@@ -894,16 +894,16 @@ make_date_str <- function(.date, label = TRUE, abbr = TRUE) {
 #' library(stringi, quietly = TRUE)
 #' ## Here we convert a binary vector to a binary string representing an integer:
 #' binV <- c(1, 0, 0, 1)
-#' strS <- vector2string(binV, type = 'int')
+#' strS <- vector2string(binV, type = "int")
 #' ## Here we convert a binary vector to string representing a binary sequence:
 #' binV <- c(1,0,0,1)
-#' seqS <- vector2string(binV, SS=' ', type='char')
+#' seqS <- vector2string(binV, SS=" ", type="char")
 #' ## Here we convert a vector of substrings to colon-separated string:
-#' subsV <- c('I', 'am', 'done')
-#' strS <- vector2string(subsV, SS = ':', type = 'char')
+#' subsV <- c("I", "am", "done")
+#' strS <- vector2string(subsV, SS = ":", type = "char")
 #'
 #' ## Making an SQL IS IN statement
-#' ids <- c(' 12345', '4X3200', '1X2890')
+#' ids <- c(" 12345", "4X3200", "1X2890")
 #' stri_c("and master.id in ('", vector2string(ids, "', '"), "') ")
 #' @import stringi
 #' @export
@@ -961,8 +961,8 @@ blank_fill_ids <- function(ids, upper = TRUE) {
 #'
 #' @param x - Character vector
 #' @examples
-#' str_reverse('abc') # "cba"
-#' str_reverse(c('abc', 'defgh', 'i', 'jklm')) # "cba" "hgfed" "i" "mlkj"
+#' str_reverse("abc") # "cba"
+#' str_reverse(c("abc", "defgh", "i", "jklm")) # "cba" "hgfed" "i" "mlkj"
 #' @import stringi
 #' @export
 str_reverse <- function(x) sapply(lapply(strsplit(x, NULL), rev), stri_c,
@@ -976,9 +976,9 @@ str_reverse <- function(x) sapply(lapply(strsplit(x, NULL), rev), stri_c,
 #' @param conjunction The conjunction to be used as the connector.
 #' This is usually `and' or `or' with `and' being the default.
 #' @examples
-#' get_and_or_list(c('Bob', 'John')) # "Bob and John"
-#' get_and_or_list(c('Bob', 'John'), 'or') # "Bob or John"
-#' get_and_or_list(c('Bob', 'John', 'Sam', 'Bill'), 'or')
+#' get_and_or_list(c("Bob", "John")) # "Bob and John"
+#' get_and_or_list(c("Bob", "John"), "or") # "Bob or John"
+#' get_and_or_list(c("Bob", "John", "Sam", "Bill"), "or")
 #' # "Bob, John, Sam, or Bill"
 #' @import stringi
 #' @export

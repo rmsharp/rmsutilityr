@@ -15,6 +15,6 @@ Returns character vector where each element has had its character
 order rerversed.
 }
 \examples{
-str_reverse('abc') # "cba"
-str_reverse(c('abc', 'defgh', 'i', 'jklm')) # "cba" "hgfed" "i" "mlkj"
+str_reverse("abc") # "cba"
+str_reverse(c("abc", "defgh", "i", "jklm")) # "cba" "hgfed" "i" "mlkj"
 }

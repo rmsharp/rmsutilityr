@@ -19,8 +19,8 @@ Returns a one element character string with correct punctuation for
 a list made up of the elements of the character vector argument.
 }
 \examples{
-get_and_or_list(c('Bob', 'John')) # "Bob and John"
-get_and_or_list(c('Bob', 'John'), 'or') # "Bob or John"
-get_and_or_list(c('Bob', 'John', 'Sam', 'Bill'), 'or')
+get_and_or_list(c("Bob", "John")) # "Bob and John"
+get_and_or_list(c("Bob", "John"), "or") # "Bob or John"
+get_and_or_list(c("Bob", "John", "Sam", "Bill"), "or")
 # "Bob, John, Sam, or Bill"
 }
