@@ -4,3 +4,5 @@
 ^.*example_wkbk.xlsx$
 .travis.yml
 .gitignore
+^README\.Rmd$
+^README-.*\.png$
