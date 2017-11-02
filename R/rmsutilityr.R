@@ -533,7 +533,7 @@ remove_strings <- function(.str, expunge, ignore_case = FALSE) {
 #' @param expunge_str character vector with names to be expunged
 #' @param lower logical TRUE if names_str is to be turned to lower case
 #' @export
-expunge_names <- function (names_str, expunge_str = c(), lower = TRUE) {
+expunge_names <- function(names_str, expunge_str = c(), lower = TRUE) {
   if (lower)
     names_str <- tolower(names_str)
 
@@ -847,9 +847,10 @@ get_split_table <- function(df, fmt, cm = 15) {
 #' @examples
 #' not_installed("stringi")
 #' @import stringi
-#' @import utils
+#' @importFrom utils installed.packages
 #' @export
-not_installed <- function(mypkg) !is.element(mypkg, installed.packages()[ , 1])
+not_installed <- function(mypkg) !is.element(mypkg, 
+                                             utils::installed.packages()[ , 1])
 #' Make a date character string given a date.
 #'
 #' This function takes a date and arguments about how to represent months
@@ -1125,7 +1126,7 @@ underscoreToCamelCase <- function(s) {
 #' @param no_files_stop logical vector of length one when set to
 #' \code{TRUE} the routine calls \code{stop} if no files are found.
 #' @import stringi
-#' @import tools
+#' @importFrom tools file_ext
 is_file <- function(files, no_files_stop = FALSE) {
   files <- files[tolower(file_ext(files)) %in% c("r", "rmd", "rnw")]
   file_exist <- file.exists(files)
