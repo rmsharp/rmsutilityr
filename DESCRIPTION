@@ -3,8 +3,8 @@ Type: Package
 Title: Utility functions used for Primate Records Database support
 Version: 1.0.57
 Date: 2017-11-01
-Author: R. Mark Sharp <msharp@TxBiomed.org>
-Maintainer: R. Mark Sharp <msharp@TxBiomed.org>
+Authors@R: person("R. Mark", "Sharp", email = "rmsharp@me.com", , 
+    role = c("ctb", "cre"))
 Description: Provides often used functions for report writing.
 Depends:
     R (>= 3.1.2)
@@ -19,6 +19,10 @@ Imports:
     XLConnect,
     xtable
 Suggests:
-    testthat (>= 0.7.1)
+    knitr,
+    roxygen2 (>= 6.0.0)
+Encoding: UTF-8
 License: MIT + file LICENSE
 RoxygenNote: 6.0.1
+LazyData: TRUE
+VignetteBuilder: knitr
