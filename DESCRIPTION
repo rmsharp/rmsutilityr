@@ -19,7 +19,6 @@ Imports:
     XLConnect,
     xtable
 Suggests:
-    knitr,
     roxygen2 (>= 6.0.0)
 Encoding: UTF-8
 License: MIT + file LICENSE
