@@ -1,8 +1,8 @@
 language: r
 cache: packages
 before_install:
-  - rvm get head
-  - Rscript -e 'install.packages("rJava")'
+  - sudo R CMD javareconf
+  - Rscript -e 'install.packages("rJava", type = "source")'
 r_github_packages:
   - jimhester/covr
 after_success:
