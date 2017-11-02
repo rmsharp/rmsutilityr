@@ -1,7 +1,8 @@
 language: r
 cache: packages
-apt_packages:
-  - rJava
+before_install:
+  - rvm get head
+  - Rscript -e 'install.packages("rJava")'
 r_github_packages:
   - jimhester/covr
 after_success:
