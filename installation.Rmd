@@ -29,7 +29,7 @@ work because the filename is wrong.
 
 It is much easier to install directly from
 [github.com/rmsharp/rmsutilityr](https://github.com/rmsharp/rmsutilityr) as all of 
-the dependencies are automatically installed as well.
+the dependencies are automatically installed.
 
 You can install **rmsutilityr** from github with:
 

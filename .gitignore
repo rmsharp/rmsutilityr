@@ -3,3 +3,5 @@
 .RData
 .Ruserdata
 .MySCMServerInfo
+installation.*
+!installation.Rmd$
