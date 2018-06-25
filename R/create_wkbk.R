@@ -7,24 +7,15 @@
 #' already exist (default is FALSE). Note that create = TRUE has
 #' no effect if the specified file exists, i.e. an existing file is
 #' loaded and not being recreated if create = TRUE.
-#' @import XLConnect
+#' @import WriteXLS
 #' @export
 create_wkbk <- function(file, df_list, sheetnames, create = TRUE) {
   if (length(df_list) != length(sheetnames))
     stop("Number of dataframes does not match number of worksheet names")
-  
+
   if (file.exists(file) & create)
     file.remove(file)
-  
-  wkbk <- loadWorkbook(filename = file, create = create)
-  for (i in seq_along(df_list)) {
-    sheetname <- sheetnames[i]
-    df <- df_list[[i]]
-    createSheet(wkbk, sheetname)
-    writeWorksheet(wkbk, df, sheetname, startRow = 1, startCol = 1,
-                   header = TRUE)
-    setColumnWidth(wkbk, sheetname, column = 1:ncol(df), width = -1)
-  }
-  saveWorkbook(wkbk)
-  wkbk
+
+  WriteXLS(x = df_list, ExcelFileName = file, SheetNames = sheetnames,
+           Encoding = "UTF-8", col.names = TRUE, AdjWidth = TRUE)
 }
