@@ -16,7 +16,7 @@ Imports:
     lubridate,
     tools,
     utils,
-    XLConnect,
+    WriteXLS,
     xtable
 Suggests:
     roxygen2 (>= 6.0.0)
