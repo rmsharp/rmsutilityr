@@ -5,7 +5,7 @@
 \title{Returns a logical vector with results of stri_detect() for each pattern in
 second parameters character vector.}
 \usage{
-str_detect_fixed_all(strings, patterns, ...)
+str_detect_fixed_all(strings, patterns, ignore_na, ...)
 }
 \arguments{
 \item{strings}{input vector. This must be an atomic vector and will be
@@ -15,6 +15,9 @@ coerced to a character vector.}
 expression. See fixed, ignore.case and perl sections
 for details. See  \emph{Extended Regular Expressions} for how to use regular
 expressions for matching.}
+
+\item{ignore_na}{if TRUE NA values are trimmed out of \code{strings} and 
+\code{patterns} before comparison}
 
 \item{...}{further arguments for stri_detect_fixed}
 }
