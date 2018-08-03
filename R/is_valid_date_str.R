@@ -6,15 +6,17 @@
 #'
 #' @param date_str character vector with 0 or more dates
 #' @param format character vector of lenght one having the date format
-#' descriptor.
+#' @param passthroug parameter \code{to as.Date}. Logical value indicating 
+#' to return NA (instead of signalling an error) if the format guessing does not succeed.
+#' descriptor. Defaults to FALSE.
 #' @export
-is_valid_date_str <- function(date_str, format = "%d-%m-%Y %H:%M:%S") {
+is_valid_date_str <- function(date_str, format = "%d-%m-%Y %H:%M:%S", optional = FALSE) {
   if (!is.character(date_str)) {
     if (is.numeric(date_str))
       return(rep(FALSE, length(date_str)))
   }
   result <- as.logical(sapply(date_str, function(s) {
-    d <- try(as.Date(s, format = format))
+    d <- try(as.Date(s, format = format, optional = optional))
     !(class(d) == "try-error" || is.na(d))
   }))
   result
