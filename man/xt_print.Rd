@@ -7,8 +7,8 @@
 xt_print(df, caption = "", label = "", size = "normalsize",
   cont = "Cont. ...", tabular.environment = "longtable",
   include.rownames = FALSE, align = NULL, floating = FALSE,
-  floating.environment = "table", digits = NULL, hlines.after = c(-1, 0,
-  nrow(df)), type = "latex", ...)
+  floating.environment = "table", digits = NULL, hlines.after = c(-1,
+  0, nrow(df)), type = "latex", ...)
 }
 \arguments{
 \item{df}{data frame being printed}

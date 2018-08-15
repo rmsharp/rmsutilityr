@@ -12,8 +12,8 @@ is_valid_date_str(date_str, format = "\%d-\%m-\%Y \%H:\%M:\%S",
 
 \item{format}{character vector of lenght one having the date format}
 
-\item{passthroug}{parameter \code{to as.Date}. Logical value indicating 
-to return NA (instead of signalling an error) if the format guessing does not succeed.
+\item{optional}{parameter to \code{as.Date}. Logical value indicating 
+to return NA (instead of signaling an error) if the format guessing does not succeed.
 descriptor. Defaults to FALSE.}
 }
 \description{

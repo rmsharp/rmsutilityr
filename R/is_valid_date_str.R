@@ -6,8 +6,8 @@
 #'
 #' @param date_str character vector with 0 or more dates
 #' @param format character vector of lenght one having the date format
-#' @param passthroug parameter \code{to as.Date}. Logical value indicating 
-#' to return NA (instead of signalling an error) if the format guessing does not succeed.
+#' @param optional parameter to \code{as.Date}. Logical value indicating 
+#' to return NA (instead of signaling an error) if the format guessing does not succeed.
 #' descriptor. Defaults to FALSE.
 #' @export
 is_valid_date_str <- function(date_str, format = "%d-%m-%Y %H:%M:%S", optional = FALSE) {
