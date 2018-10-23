@@ -2,13 +2,14 @@ Package: rmsutilityr
 Type: Package
 Title: Utility functions used for Primate Records Database support
 Version: 1.0.61
-Date: 2018-08-15
-Authors@R: person("R. Mark", "Sharp", email = "rmsharp@me.com", , 
+Date: 2018-10-22
+Authors@R: perso2n("R. Mark", "Sharp", email = "rmsharp@me.com", , 
     role = c("ctb", "cre"))
 Description: Provides often used functions for report writing.
 Depends:
     R (>= 3.1.2)
 Imports:
+    anytime,
     jsonlite,
     knitr,
     stats,
@@ -19,9 +20,13 @@ Imports:
     WriteXLS,
     xtable
 Suggests:
-    roxygen2 (>= 6.0.0)
+    roxygen2 (>= 6.0.0),
+    knitr,
+    rmarkdown
 Encoding: UTF-8
 License: MIT + file LICENSE
 RoxygenNote: 6.1.0
 LazyData: TRUE
 VignetteBuilder: knitr
+URL: https://github.com/rmsharp/rmsutilityr
+BugReports: https://github.com/rmsharp/rmsutilityr/issues

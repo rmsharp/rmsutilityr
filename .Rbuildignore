@@ -1,9 +1,13 @@
+^docs$
+^_pkgdown\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^.*.MySCMServerInfo
 ^.*example_wkbk.xlsx$
 .travis.yml
+.codecov.yml
 .gitignore
 ^README\.Rmd$
 ^README-.*\.png$
 installation.Rmd
+^docs$

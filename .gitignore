@@ -5,3 +5,7 @@
 .MySCMServerInfo
 installation.*
 !installation.Rmd$
+inst/doc
+^docs$
+inst/doc/*
+docs/*
