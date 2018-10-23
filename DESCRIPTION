@@ -3,7 +3,7 @@ Type: Package
 Title: Utility functions used for Primate Records Database support
 Version: 1.0.61
 Date: 2018-10-22
-Authors@R: perso2n("R. Mark", "Sharp", email = "rmsharp@me.com", , 
+Authors@R: person("R. Mark", "Sharp", email = "rmsharp@me.com", , 
     role = c("ctb", "cre"))
 Description: Provides often used functions for report writing.
 Depends:
