@@ -15,24 +15,18 @@ A very manual approach is to use the following code, which assumes you have all 
 ``` r
 install_path <- "c:/R Library"
 source_path <- "d:Labkey data"
-source <- "rmsutilityr.1.0.57.tar.gz"
+source <- "rmsutilityr.1.0.63.tar.gz"
 install.packages(paste0(source_path, "/", source), type = "source", repos = NULL,
                      lib = install_path)
-``
-This will fail if you do not have the dependencies already 
-installed, but the error message will provide the name(s) of the packages 
-needed.
-However, as soon as the source packages is updated that code no longer 
-work because the filename is wrong.
+```
+
+This will fail if you do not have the dependencies already installed, but the error message will provide the name(s) of the packages needed. However, as soon as the source packages is updated that code no longer work because the filename is wrong.
 
 ### Github.com Installation
 
-It is much easier to install directly from
-[github.com/rmsharp/rmsutilityr](https://github.com/rmsharp/rmsutilityr) as all of 
-the dependencies are automatically installed.
+It is much easier to install directly from [github.com/rmsharp/rmsutilityr](https://github.com/rmsharp/rmsutilityr) as all of the dependencies are automatically installed.
 
 You can install **rmsutilityr** from github with:
-```
 
 ``` r
 install.packages("devtools")
