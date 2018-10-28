@@ -18,11 +18,9 @@ is_valid_date_str <- function(date_str, format = "%d-%m-%Y %H:%M:%S", optional =
   }
   if (optional) {
     result <- !is.na(anytime(date_str, useR = TRUE))
+    result[result == FALSE] <- NA
   } else {
-    original_NAs <- is.na(date_str)
     result <- !is.na(anytime(date_str, useR = TRUE))
-    result[is.na] <- FALSE
-    result[original_NAs] <- NA
   }
   result
 }
