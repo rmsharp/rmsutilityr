@@ -7,15 +7,15 @@ dates <- c("13-21-1995", "20-13-98", "5-28-1014", "1-21-15", "2-13-2098",
            "9-5-2009", "10-1-2006", "12-14-2006", "9-3-2006", "7-23-2009")
 test_that("is_valid_date_str returns correct logical values", {
   expect_equal(is_valid_date_str(dates, format = "%m-%d-%Y"), 
-               c(FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, 
-                 FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, 
+               c(FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, 
+                 TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, 
                  TRUE, TRUE))
   expect_equal(is_valid_date_str(dates, format = "%m-%d-%Y", optional = TRUE), 
-               c(NA, NA, TRUE, TRUE, TRUE, NA, NA, NA, NA, NA, NA, TRUE,
+               c(NA, NA, TRUE, TRUE, TRUE, NA, TRUE, NA, NA, TRUE, NA, TRUE,
                  TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE))
   expect_equal(is_valid_date_str(dates, format = "%m-%d-%Y", optional = FALSE), 
-               c(FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, 
-                 FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, 
+               c(FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, 
+                 TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, 
                  TRUE, TRUE))
 })
 
