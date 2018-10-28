@@ -1,5 +1,5 @@
 language: r
-cache: packages
+#cache: packages
 dist: trusty
 r: release
 before_install:
