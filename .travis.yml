@@ -15,5 +15,6 @@ sudo: false
 #    - os: osx
 os:
   - linux
-#  - osx
+  - osx
+ßfortran:false
 warnings_are_errors: true
