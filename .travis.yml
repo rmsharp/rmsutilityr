@@ -10,10 +10,10 @@ r_github_packages:
 after_success:
   - Rscript -e 'covr::codecov()'
 sudo: false
-matrix:
-  allow_failures:
-    - os: osx
+#matrix:
+#  allow_failures:
+#    - os: osx
 os:
   - linux
-  - osx
+#  - osx
 warnings_are_errors: true
