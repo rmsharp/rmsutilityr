@@ -2,9 +2,9 @@ language: r
 cache: packages
 dist: trusty
 r: 
-  - oldrel
   - release
-  - devel
+#  - oldrel
+#  - devel
 before_install:
   - sudo R CMD javareconf
   - Rscript -e 'install.packages("rJava", type = "source")'
@@ -16,7 +16,7 @@ sudo: false
 
 matrix:
      include:
-         - os: linux
+#         - os: linux
          - os: osx
            fortran: false
 
