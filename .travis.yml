@@ -10,7 +10,6 @@ addons:
     packages: ['gfortran = false']
 before_install:
   - latex: false
-  - fortran: false
   - sudo R CMD javareconf
   - Rscript -e 'install.packages("rJava", type = "source")'
 r_github_packages:
@@ -18,6 +17,11 @@ r_github_packages:
 after_success:
   - Rscript -e 'covr::codecov()'
 sudo: false
-os:
-  - osx
+
+matrix:
+    include:
+        - os: linux
+        - os: osx'
+          fortran: false
+
 warnings_are_errors: true
