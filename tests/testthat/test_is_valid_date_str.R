@@ -17,5 +17,7 @@ test_that("is_valid_date_str returns correct logical values", {
                c(FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, 
                  TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, 
                  TRUE, TRUE))
+  expect_equal(is_valid_date_str(c(19821021, 20140806), format = "%m-%d-%Y", optional = FALSE), 
+               c(FALSE, FALSE))
 })
 
