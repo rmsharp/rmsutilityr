@@ -6,7 +6,6 @@ r:
   - release
   - devel
 before_install:
-  - latex: false
   - sudo R CMD javareconf
   - Rscript -e 'install.packages("rJava", type = "source")'
 r_github_packages:
