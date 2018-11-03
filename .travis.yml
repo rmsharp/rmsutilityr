@@ -16,7 +16,6 @@ sudo: false
 
 matrix:
      include:
-#         - os: linux
          - os: osx
            fortran: false
 
