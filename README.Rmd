@@ -16,6 +16,6 @@ knitr::opts_chunk$set(
 ```
 
 
-```{r child = "installation.Rmd", ref = "installation"}
+```{r child = "inst/extdata/installation.Rmd", ref = "installation"}
 ```
 
