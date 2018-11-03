@@ -8,8 +8,6 @@ r:
 before_install:
   - sudo R CMD javareconf
   - Rscript -e 'install.packages("rJava", type = "source")'
-r_github_packages:
-  - jimhester/covr
 after_success:
   - Rscript -e 'covr::codecov()'
 sudo: false
