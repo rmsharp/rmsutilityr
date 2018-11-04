@@ -1,19 +1,36 @@
 language: r
+sudo: required
 cache: packages
 dist: trusty
+r: 
+    - release
+    - oldrel
+    - devel
+r_packages:
+    - devtools
+    - covr
+    - rcmdcheck
 matrix:
      include:
          - os: osx
            fortran: false
-r: 
-  - release
-  - oldrel
-  - devel
-before_install:
-  - sudo R CMD javareconf
-  - Rscript -e 'install.packages("rJava", type = "source")'
+#before_install:
+#    - sudo R CMD javareconf
+#   - Rscript -e 'install.packages("rJava", type = "source")'
 after_success:
   - Rscript -e 'covr::codecov()'
-sudo: false
-
+  - Rscript -e 'pkgdown::build_site()'
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_PAT
+  keep-history: true
+  local-dir: docs
+  on:
+    branch: master
+env:
+  - global:
+    - CI=TRUE
+    - LINTR_COMMENT_BOT=false
+    
 warnings_are_errors: true
