@@ -1,6 +1,8 @@
 language: r
 sudo: required
-cache: packages
+cache:
+  - packages
+  - github_packages
 dist: trusty
 r: 
     - release
