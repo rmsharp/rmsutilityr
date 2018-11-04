@@ -32,5 +32,3 @@ env:
   - global:
     - CI=TRUE
     - LINTR_COMMENT_BOT=false
-    
-warnings_are_errors: true
