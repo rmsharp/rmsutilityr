@@ -1,6 +1,10 @@
 language: r
 cache: packages
 dist: trusty
+matrix:
+     include:
+         - os: osx
+           fortran: false
 r: 
   - release
   - oldrel
@@ -11,10 +15,5 @@ before_install:
 after_success:
   - Rscript -e 'covr::codecov()'
 sudo: false
-
-matrix:
-     include:
-         - os: osx
-           fortran: false
 
 warnings_are_errors: true
