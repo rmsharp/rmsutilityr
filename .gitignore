@@ -3,10 +3,6 @@
 .RData
 .Ruserdata
 .MySCMServerInfo
-installation.*
-!installation.Rmd$
 inst/doc
 ^docs$
-inst/doc/*
-docs/*
 !inst/extdata/installation.Rmd$
