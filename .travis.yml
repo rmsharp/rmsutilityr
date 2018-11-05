@@ -7,7 +7,7 @@ dist: trusty
 r: 
     - release
     - oldrel
-    - devel
+#    - devel
 r_packages:
     - devtools
     - covr
