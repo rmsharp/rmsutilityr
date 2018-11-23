@@ -1,18 +1,23 @@
 #' Returns the words that describe the integer values of the number provided
 #' as an argument.
 #'
-#' @param x number
+#' From GitHubGistpsychemedia/numbers2words.R
+#' Function by John Fox found here:
+#' http://tolstoy.newcastle.edu.au/R/help/05/04/2715.html
+#' Tweaks by AJH to add commas and "and" have been commented out since they
+#' are wrong
+
+#' @param x scaler that may be integer or number (real).
 #' @export
 numbers2words <- function(x) {
-  ## From GitHubGistpsychemedia/numbers2words.R
-  ## Function by John Fox found here:
-  ## http://tolstoy.newcastle.edu.au/R/help/05/04/2715.html
-  ## Tweaks by AJH to add commas and "and"
   helper <- function(x) {
     digits <- rev(strsplit(as.character(x), "")[[1]])
     nDigits <- length(digits)
     if (nDigits == 1)
-      as.vector(ones[digits])
+      if (x == "0")
+        txt <- as.vector("zero")
+      else
+        txt <- as.vector(ones[digits])
     else if (nDigits == 2)
       if (x <= 19)
         as.vector(teens[digits[1]])
@@ -82,9 +87,20 @@ numbers2words <- function(x) {
       "eighty",
       "ninety")
   names(tens) <- 2:9
+  if (x < 0) {
+    x <- -x
+    negative <- TRUE
+  } else {
+    negative <- FALSE
+  }
   x <- round(x)
   suffixes <- c("thousand", "million", "billion", "trillion")
   if (length(x) > 1)
-    return(trim(sapply(x, helper)))
-  helper(x)
+     x <- trim(sapply(x, helper))
+  else 
+    x <- helper(x)
+  if (negative)
+    return(paste("negative", x))
+  else
+    return(x)
 }

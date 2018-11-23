@@ -5,4 +5,7 @@
 .MySCMServerInfo
 inst/doc
 ^docs$
+inst/doc/*
+docs/*
+.Rapp.history
 !inst/extdata/installation.Rmd$

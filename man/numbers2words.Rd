@@ -8,9 +8,12 @@ as an argument.}
 numbers2words(x)
 }
 \arguments{
-\item{x}{number}
+\item{x}{scaler that may be integer or number (real).}
 }
 \description{
-Returns the words that describe the integer values of the number provided
-as an argument.
+From GitHubGistpsychemedia/numbers2words.R
+Function by John Fox found here:
+http://tolstoy.newcastle.edu.au/R/help/05/04/2715.html
+Tweaks by AJH to add commas and "and" have been commented out since they
+are wrong
 }
