@@ -7,5 +7,9 @@ inst/doc
 ^docs$
 inst/doc/*
 docs/*
+!docs/*.css
+!docs/*.js
+!docs/*.ico
+!docs/*.html
 .Rapp.history
 !inst/extdata/installation.Rmd$
