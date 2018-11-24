@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rmsutilityr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.64</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.65</span>
       </span>
     </div>
 
@@ -84,11 +84,11 @@
 <h3 class="hasAnchor">
 <a href="#installation-from-source" class="anchor"></a>Installation from Source</h3>
 <p>A very manual approach is to use the following code, which assumes you have all of the dependencies already installed:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">install_path &lt;-<span class="st"> "c:/R Library"</span>
-source_path &lt;-<span class="st"> "d:Labkey data"</span>
-source &lt;-<span class="st"> "rmsutilityr.1.0.63.tar.gz"</span>
-<span class="kw">install.packages</span>(<span class="kw">paste0</span>(source_path, <span class="st">"/"</span>, source), <span class="dt">type =</span> <span class="st">"source"</span>, <span class="dt">repos =</span> <span class="ot">NULL</span>,
-                     <span class="dt">lib =</span> install_path)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">install_path &lt;-<span class="st"> "c:/R Library"</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">source_path &lt;-<span class="st"> "d:Labkey data"</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">source &lt;-<span class="st"> "rmsutilityr.1.0.63.tar.gz"</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">install.packages</span>(<span class="kw">paste0</span>(source_path, <span class="st">"/"</span>, source), <span class="dt">type =</span> <span class="st">"source"</span>, <span class="dt">repos =</span> <span class="ot">NULL</span>,</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">                     <span class="dt">lib =</span> install_path)</a></code></pre></div>
 <p>This will fail if you do not have the dependencies already installed, but the error message will provide the name(s) of the packages needed. However, as soon as the source packages is updated that code no longer work because the filename is wrong.</p>
 </div>
 <div id="github-com-installation" class="section level3">
@@ -96,8 +96,8 @@ source &lt;-<span class="st"> "rmsutilityr.1.0.63.tar.gz"</span>
 <a href="#github-com-installation" class="anchor"></a>Github.com Installation</h3>
 <p>It is much easier to install directly from <a href="https://github.com/rmsharp/rmsutilityr">github.com/rmsharp/rmsutilityr</a> as all of the dependencies are automatically installed.</p>
 <p>You can install <strong>rmsutilityr</strong> from github with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"devtools"</span>)
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"rmsharp/rmsutilityr"</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"devtools"</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"rmsharp/rmsutilityr"</span>)</a></code></pre></div>
 <p>All missing dependencies should be automatically installed.</p>
 </div>
 </div>
