@@ -87,20 +87,15 @@ numbers2words <- function(x) {
       "eighty",
       "ninety")
   names(tens) <- 2:9
-  if (x < 0) {
-    x <- -x
-    negative <- TRUE
-  } else {
-    negative <- FALSE
-  }
+  sign_mult <- ifelse(x < 0, -1, 1) 
+  x <- x * sign_mult
   x <- round(x)
   suffixes <- c("thousand", "million", "billion", "trillion")
   if (length(x) > 1)
      x <- trim(sapply(x, helper))
   else 
     x <- helper(x)
-  if (negative)
-    return(paste("negative", x))
-  else
-    return(x)
+  
+  sign_word <- ifelse(sign_mult < 0, "negative ", "")
+  return(paste0(sign_word, x))
 }
