@@ -20,6 +20,6 @@ test_that("classify_code_lines correctly classifies code lines", {
   expect_equal(test_one[[6]], 1)
   test_two <- classify_code_lines()
   expect_true(test_two[[2]] > 25)
-  test_three <- classify_code_lines(path = "../")
+  test_three <- classify_code_lines(path = "/")
   expect_true(test_three[[2]] == test_two[[2]])
 })
