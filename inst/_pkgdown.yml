@@ -19,6 +19,7 @@ reference:
   - '`get_elapsed_time_str`'
   - '`get_first_json_message`'
   - '`get_json_list`'
+  - '`get_pkg_list`'
   - '`get_split_format`'
   - '`get_split_table`'
   - '`install_from_source`'

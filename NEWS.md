@@ -1,3 +1,7 @@
+# rmsutilityr 1.0.70
+
+* Added get_pkg_list function to return a character vector of loaded packages.
+
 # rmsutilityr 1.0.61
 
 * Added a `NEWS.md` file to track changes to the package.
