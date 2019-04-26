@@ -9,7 +9,7 @@ get_pkg_descriptions(pkgs = NULL, lib.loc = NULL,
   "Maintainer", "Description", "Depends", "Imports", "Suggests",
   "Encoding", "License", "RoxygenNote", "LazyData", "VignetteBuilder",
   "URL", "BugReports"), base = FALSE, dependencies = FALSE,
-  which = c("Depends", "Imports", "LinkingTo"), recursive = FALSE,
+  which = c("Depends", "Imports", "LinkingTo"), recursive = TRUE,
   reverse = FALSE, verbose = getOption("verbose"))
 }
 \arguments{

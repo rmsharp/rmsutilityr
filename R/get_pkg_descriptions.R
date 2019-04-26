@@ -29,16 +29,17 @@
 #' package search cycles.
 #' @importFrom stringi stri_length
 #' @importFrom tools package_dependencies
-#' @importFrom utils packageDescription
+#' @importFrom utils packageDescription available.packages
 #' @export
 get_pkg_descriptions <- function(pkgs = NULL, lib.loc = NULL,
                          fields = c("Package", "Type", "Title", "Date", "Author", 
                          "Creator", "Maintainer", "Description", "Depends", "Imports", 
                          "Suggests", "Encoding", "License", "RoxygenNote", "LazyData", 
                          "VignetteBuilder", "URL", "BugReports"),
-                         base = FALSE, dependencies = FALSE,
+                         base = FALSE, 
+                         dependencies = FALSE,
                          which = c("Depends", "Imports", "LinkingTo"),
-                         recursive = FALSE, reverse = FALSE, 
+                         recursive = TRUE, reverse = FALSE, 
                          verbose = getOption("verbose")) {
   possible_fields <- c("Package", "Type", "Title", "Date", "Author", 
                        "Creator", "Maintainer", "Description", "Depends", "Imports", 
@@ -47,10 +48,13 @@ get_pkg_descriptions <- function(pkgs = NULL, lib.loc = NULL,
   fields <- intersect(fields, possible_fields)
   if (is.null(pkgs))
     pkgs <- get_pkg_list(base = FALSE)
+  required <- pkgs
   if (dependencies) {
-    required <- pkgs
      required <- unique(c(required, sort(unique(
-       unlist(tools::package_dependencies(pkgs, recursive = recursive))))))
+       unlist(tools::package_dependencies(pkgs, 
+                                          db = utils::available.packages(
+                                            repos="http://cran.us.r-project.org"),
+                                          recursive = recursive))))))
    }
   meta_data <- list(length(required))
   for (pkg in required) {
