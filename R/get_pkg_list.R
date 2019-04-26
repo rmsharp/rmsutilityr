@@ -9,6 +9,7 @@
 #' @param session_info object returned by \code{sessionInfo}. Defaults to
 #' sessionInfo().
 #' @param base logical value if TRUE base packages are included
+#' @importFrom utils sessionInfo
 #' @export
 get_pkg_list <- function(session_info = sessionInfo(), base = FALSE) {
   pkg_group <- intersect(names(session_info), c("basePkgs", "otherPkgs", "loadedOnly"))
