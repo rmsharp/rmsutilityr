@@ -50,7 +50,7 @@ dataframe with p
 Provides a dataframe of package description fields
 }
 \examples{
-write.csv(data.frame(packages = get_pkg_list(base = TRUE), stringsAsFactors = FALSE), 
+write.csv(data.frame(get_pkg_descriptions(base = TRUE), stringsAsFactors = FALSE), 
           file = "package_list.csv", row.names = FALSE, quote = FALSE)
 
 }

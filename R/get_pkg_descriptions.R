@@ -3,7 +3,7 @@
 #' @return dataframe with p
 #' 
 #' @examples 
-#' write.csv(data.frame(packages = get_pkg_list(base = TRUE), stringsAsFactors = FALSE), 
+#' write.csv(data.frame(get_pkg_descriptions(base = TRUE), stringsAsFactors = FALSE), 
 #'           file = "package_list.csv", row.names = FALSE, quote = FALSE)
 #' 
 #' @param pkgs character vector of package names. Defaults to packages found with
@@ -47,20 +47,22 @@ get_pkg_descriptions <- function(pkgs = NULL, lib.loc = NULL,
                        "VignetteBuilder", "URL", "BugReports")
   fields <- intersect(fields, possible_fields)
   if (is.null(pkgs))
-    pkgs <- get_pkg_list(base = FALSE)
+    pkgs <- get_pkg_list(base = base)
   required <- pkgs
   if (dependencies) {
      required <- unique(c(required, sort(unique(
        unlist(tools::package_dependencies(pkgs, 
                                           db = utils::available.packages(
                                             repos="http://cran.us.r-project.org"),
-                                          recursive = recursive))))))
+                                          which = which,
+                                          recursive = recursive, reverse = reverse,
+                                          verbose = verbose))))))
    }
   meta_data <- list(length(required))
   for (pkg in required) {
     meta_data[[pkg]] <- utils::packageDescription(pkg, lib.loc = lib.loc, fields)
   }
-  
+  ## This is ugly code and likely fragile
   meta_df <- data.frame()
   for (pkg in names(meta_data)[stri_length(names(meta_data)) > 0]) {
     df <- c(meta_data[[pkg]][names(meta_data[[pkg]])])
