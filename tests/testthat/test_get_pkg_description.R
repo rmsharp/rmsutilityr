@@ -2,7 +2,7 @@ context("test_get_pkg_descriptions")
 library(stringr)
 
 
-test_that("get_pkg_description retrieve correct information", {
+test_that("get_pkg_descriptions retrieve correct information", {
   all_pkgs <- get_pkg_descriptions(pkgs = "stringr")
   which_imports_pkgs <- 
     get_pkg_descriptions(pkgs = "stringr", dependencies = TRUE,
@@ -17,5 +17,6 @@ test_that("get_pkg_description retrieve correct information", {
   expect_true(any(str_detect(stringr_recursive_desc$Package, "stringi")))
   expect_equal(nrow(all_pkgs), 1)
   expect_equal(nrow(which_imports_pkgs), 4)
-  expect_equal(nrow(which_all_pkgs), 10)
+  expect_true(all(which_all_pkgs$Package %in% c("stringr", "covr", "glue", "htmltools", "htmlwidgets", "knitr", 
+                                       "magrittr", "rmarkdown", "stringi", "testthat")))
 })
