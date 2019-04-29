@@ -32,32 +32,37 @@
 #' @importFrom utils packageDescription available.packages
 #' @export
 get_pkg_descriptions <- function(pkgs = NULL, lib.loc = NULL,
-                         fields = c("Package", "Type", "Title", "Date", "Author", 
-                         "Creator", "Maintainer", "Description", "Depends", "Imports", 
-                         "Suggests", "Encoding", "License", "RoxygenNote", "LazyData", 
-                         "VignetteBuilder", "URL", "BugReports"),
-                         base = FALSE, 
-                         dependencies = FALSE,
-                         which = c("Depends", "Imports", "LinkingTo"),
-                         recursive = TRUE, reverse = FALSE, 
-                         verbose = getOption("verbose")) {
-  possible_fields <- c("Package", "Type", "Title", "Date", "Author", 
-                       "Creator", "Maintainer", "Description", "Depends", "Imports", 
-                       "Suggests", "Encoding", "License", "RoxygenNote", "LazyData", 
-                       "VignetteBuilder", "URL", "BugReports")
+           fields = c("Package", "Type", "Title", "Version", "Date", 
+                      "Author", "Creator", "Maintainer", "Description", 
+                      "Depends", "Imports", "Suggests", "Encoding", "License",
+                      "RoxygenNote", "LazyData", "VignetteBuilder",
+                      "URL", "BugReports"),
+           base = FALSE, 
+           dependencies = FALSE,
+           which = c("Depends", "Imports", "LinkingTo"),
+           recursive = TRUE, reverse = FALSE, 
+           verbose = getOption("verbose")) {
+  possible_fields <- c("Package", "Type", "Title", "Version", "Date", "Author",
+                       "Creator", "Maintainer", "Description", "Depends", 
+                       "Imports", "Suggests", "Encoding", "License", 
+                       "RoxygenNote", "LazyData", "VignetteBuilder", 
+                       "URL", "BugReports")
   fields <- intersect(fields, possible_fields)
   if (is.null(pkgs))
     pkgs <- get_pkg_list(base = base)
   required <- pkgs
   if (dependencies) {
-     required <- unique(c(required, sort(unique(
-       unlist(tools::package_dependencies(pkgs, 
-                                          db = utils::available.packages(
-                                            repos="http://cran.us.r-project.org"),
-                                          which = which,
-                                          recursive = recursive, reverse = reverse,
-                                          verbose = verbose))))))
-   }
+    required <- unique(
+      c(required, sort(
+        unique(
+          unlist(tools::package_dependencies(
+            pkgs, db = utils::available.packages(
+              repos="http://cran.us.r-project.org"),
+            which = which,
+            recursive = recursive, reverse = reverse,
+            verbose = verbose)))
+      )))
+  }
   meta_data <- list(length(required))
   for (pkg in required) {
     meta_data[[pkg]] <- utils::packageDescription(pkg, lib.loc = lib.loc, fields)
