@@ -5,8 +5,8 @@
 \title{Provides a dataframe of package description fields}
 \usage{
 get_pkg_descriptions(pkgs = NULL, lib.loc = NULL,
-  fields = c("Package", "Type", "Title", "Version", "Date", "Author",
-  "Creator", "Maintainer", "Description", "Depends", "Imports", "Suggests",
+  fields = c("Package", "Type", "Title", "Version", "Author", "Creator",
+  "Maintainer", "Description", "Depends", "Imports", "Suggests",
   "Encoding", "License", "RoxygenNote", "LazyData", "VignetteBuilder",
   "URL", "BugReports"), base = FALSE, dependencies = FALSE,
   which = c("Depends", "Imports", "LinkingTo"), recursive = TRUE,

@@ -32,7 +32,7 @@
 #' @importFrom utils packageDescription available.packages
 #' @export
 get_pkg_descriptions <- function(pkgs = NULL, lib.loc = NULL,
-           fields = c("Package", "Type", "Title", "Version", "Date", 
+           fields = c("Package", "Type", "Title", "Version",  
                       "Author", "Creator", "Maintainer", "Description", 
                       "Depends", "Imports", "Suggests", "Encoding", "License",
                       "RoxygenNote", "LazyData", "VignetteBuilder",
@@ -42,7 +42,7 @@ get_pkg_descriptions <- function(pkgs = NULL, lib.loc = NULL,
            which = c("Depends", "Imports", "LinkingTo"),
            recursive = TRUE, reverse = FALSE, 
            verbose = getOption("verbose")) {
-  possible_fields <- c("Package", "Type", "Title", "Version", "Date", "Author",
+  possible_fields <- c("Package", "Type", "Title", "Version", "Author",
                        "Creator", "Maintainer", "Description", "Depends", 
                        "Imports", "Suggests", "Encoding", "License", 
                        "RoxygenNote", "LazyData", "VignetteBuilder", 
@@ -64,8 +64,13 @@ get_pkg_descriptions <- function(pkgs = NULL, lib.loc = NULL,
       )))
   }
   meta_data <- list(length(required))
+  con <- url("http://cran.r-project.org/src/contrib/PACKAGES")
+  packages <- read.dcf(con, fields = fields, all = TRUE)
+  close(con)
+  
   for (pkg in required) {
-    meta_data[[pkg]] <- utils::packageDescription(pkg, lib.loc = lib.loc, fields)
+    meta_data[[pkg]] <- as.list(packages[packages$Package == pkg, fields])
+#    meta_data[[pkg]] <- utils::packageDescription(pkg, lib.loc = lib.loc, fields)
   }
   ## This is ugly code and likely fragile
   meta_df <- data.frame()
