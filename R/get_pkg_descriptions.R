@@ -27,6 +27,7 @@
 #' calculated, otherwise reverse dependencies.
 #' @param verbose	logical indicating if output should monitor the 
 #' package search cycles.
+#' 
 #' @importFrom stringi stri_length
 #' @importFrom tools package_dependencies
 #' @importFrom utils packageDescription available.packages
