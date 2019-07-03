@@ -4,6 +4,7 @@ library(stringi)
 
 test_that("get_pkg_descriptions retrieve correct information", {
   get_cran_db <- get_cran_db_factory()
+  session_pkgs <- get_pkg_descriptions()
   all_pkgs <- get_pkg_descriptions(pkgs = "stringr")
   which_imports_pkgs <- 
     get_pkg_descriptions(pkgs = "stringr", dependencies = TRUE,
@@ -22,6 +23,8 @@ test_that("get_pkg_descriptions retrieve correct information", {
   expect_true(any(stri_detect_fixed(stringr_recursive_desc$pkg_df$Package, "stringi")))
   expect_equal(nrow(all_pkgs$pkg_df), 1)
   expect_equal(nrow(which_imports_pkgs$pkg_df), 4)
+  expect_equal(17, ncol(all_pkgs$pkg_df))
   expect_true(all(which_all_pkgs$pkg_df$Package %in% c("stringr", "covr", "glue", "htmltools", "htmlwidgets", "knitr", 
                                                 "magrittr", "rmarkdown", "stringi", "testthat")))
+  expect_true(nrow(all_pkgs$pkg_df) < nrow(session_pkgs$pkg_df))
 })

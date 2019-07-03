@@ -76,7 +76,7 @@ get_pkg_descriptions <- function(pkgs = NULL, lib.loc = NULL,
   }
     
   packages <- as.data.frame(db, stringsAsFactors = FALSE)
-  pkg_df <- packages[packages$Package %in% required, c("Package", "License")]
+  pkg_df <- packages[packages$Package %in% required, fields]
   
   if (dependencies) {
     pkg_dependencies_df <- merge(pkg_dependencies_df, pkg_df, by.x = "Dependency",
