@@ -3,7 +3,7 @@
 #' @return dataframe with p
 #' 
 #' @examples 
-#' write.csv(data.frame(get_pkg_descriptions(base = TRUE), stringsAsFactors = FALSE), 
+#' write.csv(get_pkg_descriptions(base = TRUE)$pkg_df, 
 #'           file = "package_list.csv", row.names = FALSE, quote = FALSE)
 #' 
 #' @param pkgs character vector of package names. Defaults to packages found with
@@ -27,57 +27,74 @@
 #' calculated, otherwise reverse dependencies.
 #' @param verbose	logical indicating if output should monitor the 
 #' package search cycles.
+#' @param new_cran_db logical variable when set to TRUE causes the function to 
+#' perform a get from CRAN to get a fresh copy of the database. Default
+#' is \code{FALSE}.
+#' @param get_cran_db function to return a cran or cran like database. If
+#' left \code{NULL}, it will be defined with     
+#' get_cran_db <- get_cran_db_factory(new_cran_db = new_cran_db)
 #' 
 #' @importFrom stringi stri_length
 #' @importFrom tools package_dependencies
 #' @importFrom utils packageDescription available.packages
 #' @export
 get_pkg_descriptions <- function(pkgs = NULL, lib.loc = NULL,
-           fields = c("Package", "Type", "Title", "Version",  
-                      "Author", "Creator", "Maintainer", "Description", 
-                      "Depends", "Imports", "Suggests", "Encoding", "License",
-                      "RoxygenNote", "LazyData", "VignetteBuilder",
-                      "URL", "BugReports"),
+           fields = NULL,
            base = FALSE, 
            dependencies = FALSE,
            which = c("Depends", "Imports", "LinkingTo"),
            recursive = TRUE, reverse = FALSE, 
-           verbose = getOption("verbose")) {
-  possible_fields <- c("Package", "Type", "Title", "Version", "Author",
-                       "Creator", "Maintainer", "Description", "Depends", 
-                       "Imports", "Suggests", "Encoding", "License", 
-                       "RoxygenNote", "LazyData", "VignetteBuilder", 
-                       "URL", "BugReports")
-  fields <- intersect(fields, possible_fields)
+           verbose = getOption("verbose"), new_cran_db = FALSE,
+           get_cran_db = NULL) {
+  possible_fields <- c("Package", "Version", "Priority", "Depends", "Imports", 
+                       "LinkingTo", "Suggests", "Enhances", "License", 
+                       "License_is_FOSS", "License_restricts_use", 
+                       "OS_type", "Archs", "MD5sum", "NeedsCompilation", 
+                       "File", "Repository"
+  )
+  if (is.null(fields)) {
+    fields <- possible_fields
+  } else {
+    fields <- intersect(fields, possible_fields)
+  }
   if (is.null(pkgs))
     pkgs <- get_pkg_list(base = base)
-  required <- pkgs
-  if (dependencies) {
-    required <- unique(
-      c(required, sort(
-        unique(
-          unlist(tools::package_dependencies(
-            pkgs, db = utils::available.packages(
-              repos="http://cran.us.r-project.org"),
-            which = which,
-            recursive = recursive, reverse = reverse,
-            verbose = verbose)))
-      )))
-  }
-  meta_data <- list(length(required))
-  con <- url("http://cran.r-project.org/src/contrib/PACKAGES")
-  packages <- read.dcf(con, fields = fields, all = TRUE)
-  close(con)
+  if (is.null(get_cran_db))
+    get_cran_db <- get_cran_db_factory()
   
-  for (pkg in required) {
-    meta_data[[pkg]] <- as.list(packages[packages$Package == pkg, fields])
-#    meta_data[[pkg]] <- utils::packageDescription(pkg, lib.loc = lib.loc, fields)
+  db = get_cran_db()
+  required <- pkgs
+  
+  if (dependencies) {
+    pkg_dependencies <- tools::package_dependencies(
+      pkgs, db = db,
+      which = which,
+      recursive = recursive, reverse = reverse,
+      verbose = verbose)
+    required <- unique(c(required, sort(unique(unlist(pkg_dependencies)))))
+    pkg_dependencies_df <- make_pkg_dep_df(pkg_dependencies)
   }
-  ## This is ugly code and likely fragile
-  meta_df <- data.frame()
-  for (pkg in names(meta_data)[stri_length(names(meta_data)) > 0]) {
-    df <- c(meta_data[[pkg]][names(meta_data[[pkg]])])
-    meta_df <- rbind(meta_df, df, stringsAsFactors = FALSE)
+    
+  packages <- as.data.frame(db, stringsAsFactors = FALSE)
+  pkg_df <- packages[packages$Package %in% required, c("Package", "License")]
+  
+  if (dependencies) {
+    pkg_dependencies_df <- merge(pkg_dependencies_df, pkg_df, by.x = "Dependency",
+                               by.y = "Package", all.x = TRUE, sort = FALSE)
   }
-  meta_df
+  pkg_df <- pkg_df[order(pkg_df$Package), ]
+  if (dependencies) {
+    pkg_dependencies_df <-
+      pkg_dependencies_df[order(pkg_dependencies_df$Package, 
+                                pkg_dependencies_df$Dependency),
+                          c("Package", "Dependency", "License")]
+   pkg_dependencies_df <- pkg_dependencies_df[!duplicated(pkg_dependencies_df), ]
+  }
+  pkg_df <- pkg_df[!duplicated(pkg_df), ]
+
+    if (dependencies) {
+    list(pkg_df = pkg_df, pkg_dependencies_df = pkg_dependencies_df)
+  } else {
+    list(pkg_df = pkg_df)
+  }
 }

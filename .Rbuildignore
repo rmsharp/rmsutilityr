@@ -9,7 +9,9 @@
 .gitignore
 ^README\.Rmd$
 ^README-.*\.png$
+^NEWS.Rmd$          # A news file written in RMarkdown
 installation.Rmd
 ^docs$
 _config.yml
 ^CODE_OF_CONDUCT.md$
+NEWS.Rmd

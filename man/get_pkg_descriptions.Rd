@@ -4,13 +4,11 @@
 \alias{get_pkg_descriptions}
 \title{Provides a dataframe of package description fields}
 \usage{
-get_pkg_descriptions(pkgs = NULL, lib.loc = NULL,
-  fields = c("Package", "Type", "Title", "Version", "Author", "Creator",
-  "Maintainer", "Description", "Depends", "Imports", "Suggests",
-  "Encoding", "License", "RoxygenNote", "LazyData", "VignetteBuilder",
-  "URL", "BugReports"), base = FALSE, dependencies = FALSE,
-  which = c("Depends", "Imports", "LinkingTo"), recursive = TRUE,
-  reverse = FALSE, verbose = getOption("verbose"))
+get_pkg_descriptions(pkgs = NULL, lib.loc = NULL, fields = NULL,
+  base = FALSE, dependencies = FALSE, which = c("Depends", "Imports",
+  "LinkingTo"), recursive = TRUE, reverse = FALSE,
+  verbose = getOption("verbose"), new_cran_db = FALSE,
+  get_cran_db = NULL)
 }
 \arguments{
 \item{pkgs}{character vector of package names. Defaults to packages found with
@@ -42,6 +40,14 @@ calculated, otherwise reverse dependencies.}
 
 \item{verbose}{logical indicating if output should monitor the 
 package search cycles.}
+
+\item{new_cran_db}{logical variable when set to TRUE causes the function to 
+perform a get from CRAN to get a fresh copy of the database. Default
+is \code{FALSE}.}
+
+\item{get_cran_db}{function to return a cran or cran like database. If
+left \code{NULL}, it will be defined with     
+get_cran_db <- get_cran_db_factory(new_cran_db = new_cran_db)}
 }
 \value{
 dataframe with p
@@ -50,7 +56,7 @@ dataframe with p
 Provides a dataframe of package description fields
 }
 \examples{
-write.csv(data.frame(get_pkg_descriptions(base = TRUE), stringsAsFactors = FALSE), 
+write.csv(get_pkg_descriptions(base = TRUE)$pkg_df, 
           file = "package_list.csv", row.names = FALSE, quote = FALSE)
 
 }

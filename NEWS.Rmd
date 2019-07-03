@@ -1,0 +1,27 @@
+---
+title: "NEWS"
+author: "R. Mark Sharp"
+date: "07/03/2019"
+output:
+   github_document: default
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# rmsutilityr 1.0.74 20190703
+-   Updated get_pkg_descriptions to use CRAN database for dependency lookups
+
+# rmsutilityr 1.0.70
+
+-   Added get_pkg_list function to return a character vector of loaded packages.
+
+# rmsutilityr 1.0.61 20181022 
+
+-   Added a `NEWS.md` file to track changes to the package.
+
+-   Added unit test for is_valid_date_str when anytime was incorporated into 
+         function to handle more date formats.
+
+
