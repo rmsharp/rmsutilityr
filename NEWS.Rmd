@@ -10,6 +10,13 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+# rmsutilityr 1.0.75 20190703
+-   Added unit tests for vector2string, get_split_format, make_license_df, 
+    get_pkg_descriptions
+-   Further enhanced efficiency of get_pkg_descriptions by reducing need to 
+    get data from CRAN. User can limit number of time needed to go to CRAN
+    is once per instance per day.
+
 # rmsutilityr 1.0.74 20190703
 -   Updated get_pkg_descriptions to use CRAN database for dependency lookups
 
