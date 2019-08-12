@@ -1,8 +1,8 @@
 Package: rmsutilityr
 Type: Package
-Title: Utility functions used for Primate Records Database support
-Version: 1.0.76
-Date: 2019-07-03
+Title: Utility Functions Used for Reproducible Research
+Version: 1.0.77
+Date: 2019-08-10
 Authors@R: person("R. Mark", "Sharp", email = "rmsharp@me.com", , 
     role = c("ctb", "cre"))
 Description: Provides often used functions for report writing.
