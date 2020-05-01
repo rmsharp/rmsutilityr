@@ -19,5 +19,6 @@ knitr::opts_chunk$set(
 ```{r child = "inst/extdata/installation.Rmd", ref = "installation"}
 ```
 
-Find online documentation at [https://rmsharp.github.io/rmsutilityr/](https://rmsharp.github.io/rmsutilityr/).
+Find online documentation at 
+[https://rmsharp.github.io/rmsutilityr/](https://rmsharp.github.io/rmsutilityr/).
 

@@ -13,8 +13,11 @@
 }
 Capitalization is not modified by this function.}
 \usage{
-make_knitr_header(title_str = "", sub_title_str = "",
-  author_str = "Data Science Core")
+make_knitr_header(
+  title_str = "",
+  sub_title_str = "",
+  author_str = "Data Science Core"
+)
 }
 \arguments{
 \item{title_str}{character vector of length 1 having the text of the title}

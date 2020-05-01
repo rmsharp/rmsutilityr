@@ -4,11 +4,19 @@
 \alias{get_pkg_descriptions}
 \title{Provides a dataframe of package description fields}
 \usage{
-get_pkg_descriptions(pkgs = NULL, lib.loc = NULL, fields = NULL,
-  base = FALSE, dependencies = FALSE, which = c("Depends", "Imports",
-  "LinkingTo"), recursive = TRUE, reverse = FALSE,
-  verbose = getOption("verbose"), new_cran_db = FALSE,
-  get_cran_db = NULL)
+get_pkg_descriptions(
+  pkgs = NULL,
+  lib.loc = NULL,
+  fields = NULL,
+  base = FALSE,
+  dependencies = FALSE,
+  which = c("Depends", "Imports", "LinkingTo"),
+  recursive = TRUE,
+  reverse = FALSE,
+  verbose = getOption("verbose"),
+  new_cran_db = FALSE,
+  get_cran_db = NULL
+)
 }
 \arguments{
 \item{pkgs}{character vector of package names. Defaults to packages found with

@@ -5,8 +5,11 @@
 \title{Coverts values from a vector to a concatenation of substrings separated
 by user-specified string separator.}
 \usage{
-vector2string(vector = c(" 12345", "4X3200", "1X2890"), SS = "', '",
-  type = "char")
+vector2string(
+  vector = c(" 12345", "4X3200", "1X2890"),
+  SS = "', '",
+  type = "char"
+)
 }
 \arguments{
 \item{vector}{integer or character vector}
