@@ -24,13 +24,13 @@ Make a list of functions used flags
 }
 \examples{
 # Create function list with `value` defaulted to TRUE
-tf_flag <- make_true_false_flag(TRUE)
+tf_flag <- make_flag(TRUE, c(TRUE, FALSE))
 tf_flag$value()
 # reset `value` 
 tf_flag$set(FALSE)
 tf_flag$value()
 # Create function list with `value` defaulted to FALSE
-tf_flag <- make_true_false_flag(FALSE)
+tf_flag <-make_flag(TRUE, c(TRUE, FALSE))
 tf_flag$value()
 # reset `value` 
 tf_flag$set(TRUE)

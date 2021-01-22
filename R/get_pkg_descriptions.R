@@ -4,8 +4,8 @@
 #' 
 #' @examples 
 #' write.csv(get_pkg_descriptions(base = TRUE)$pkg_df, 
-#'           file = "package_list.csv", row.names = FALSE, quote = FALSE)
-#' 
+#'           file = file.path(tempdir(), "package_list.csv"), 
+#'           row.names = FALSE, quote = FALSE)
 #' @param pkgs character vector of package names. Defaults to packages found with
 #'  sessionInfo().
 #' @param lib.loc a character vector of directory names of R libraries, or NULL. 

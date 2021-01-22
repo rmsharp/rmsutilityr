@@ -15,7 +15,7 @@
 #' @param lower logical indicating whether remaining characters will be
 #' forced to lower case.
 #'
-#' @import stringi
+#' @importFrom stringi stri_split stri_c
 #' @export
 capitalize_first_letter <- function(words = "", lower = FALSE) {
   if (lower)

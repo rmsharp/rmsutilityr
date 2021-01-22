@@ -65,6 +65,6 @@ Provides a dataframe of package description fields
 }
 \examples{
 write.csv(get_pkg_descriptions(base = TRUE)$pkg_df, 
-          file = "package_list.csv", row.names = FALSE, quote = FALSE)
-
+          file = file.path(tempdir(), "package_list.csv"), 
+          row.names = FALSE, quote = FALSE)
 }

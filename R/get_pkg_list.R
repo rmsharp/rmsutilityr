@@ -4,7 +4,8 @@
 #' 
 #' @examples 
 #' write.csv(data.frame(packages = get_pkg_list(base = TRUE), stringsAsFactors = FALSE), 
-#'           file = "package_list.csv", row.names = FALSE, quote = FALSE)
+#'           file = file.path(tempdir(), "package_list.csv"), 
+#'           row.names = FALSE, quote = FALSE)
 #' 
 #' @param session_info object returned by \code{sessionInfo}. Defaults to
 #' sessionInfo().
