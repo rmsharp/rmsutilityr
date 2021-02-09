@@ -4,7 +4,14 @@
 \alias{find_html_comments}
 \title{Find HTML comment}
 \usage{
-find_html_comments(lines)
+find_html_comments(lines, label = "")
+}
+\arguments{
+\item{lines}{Character vector of lines to examine.}
+
+\item{label}{Optional regex expression that can be used to limit the 
+comments found by adding this character vector of length one immediately 
+after "<!--".}
 }
 \description{
 Find HTML comment

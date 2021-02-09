@@ -2,7 +2,7 @@
 % Please edit documentation in R/colfmt.R
 \name{colfmt}
 \alias{colfmt}
-\title{Returns a string formated as a comment for HTML or LaTeX depending on
+\title{Returns a string formatted as a comment for HTML or LaTeX depending on
 output format.}
 \usage{
 colfmt(x, color = "red")
@@ -13,6 +13,6 @@ colfmt(x, color = "red")
 \item{color}{color that font is to be}
 }
 \description{
-Returns a string formated as a comment for HTML or LaTeX depending on
+Returns a string formatted as a comment for HTML or LaTeX depending on
 output format.
 }

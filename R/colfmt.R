@@ -1,4 +1,4 @@
-#' Returns a string formated as a comment for HTML or LaTeX depending on
+#' Returns a string formatted as a comment for HTML or LaTeX depending on
 #' output format.
 #'
 #' @param  x character string with comment.
