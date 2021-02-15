@@ -1,8 +1,7 @@
 Package: rmsutilityr
 Type: Package
 Title: Utility Functions Used for Reproducible Research
-Version: 1.0.77
-Date: 2019-08-10
+Version: 1.1.0.9000
 Authors@R: person("R. Mark", "Sharp", email = "rmsharp@me.com", , 
     role = c("ctb", "cre"))
 Description: Provides often used functions for report writing.
@@ -11,6 +10,7 @@ Depends:
 Imports:
     anytime,
     jsonlite,
+    magrittr,
     stats,
     stringi,
     lubridate,

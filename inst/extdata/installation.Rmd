@@ -26,7 +26,7 @@ output: html_document
 <!-- work because the filename is wrong. -->
 
 
-### Github.com Installation
+### github.com Installation
 
 In addition to installing from CRAN the current development version can be 
 intalled from GitHub.

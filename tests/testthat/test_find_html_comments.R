@@ -18,18 +18,19 @@ lines <- c("<!-- RMS single line html comment -->",
            "<!-- RMS gc2-->",
            "<!--bXNnYm94-->",
            "<!-- TJH egc2-->",
-           "<!-- RMS g2-->
+           "<!-- 
+           RMS g2-->
            </div>
            <!-- RMS eg2-->",
            "fdsfdskh")
 test_that("find_html_comment returns correct logical values", {
-  expect_equal(find_html_comments(lines), 
-               c(rep(TRUE, 4), FALSE, rep(TRUE, 6), FALSE))
-  expect_equal(find_html_comments(lines, label = "RMS"), 
-               c(rep(TRUE, 4), FALSE, rep(TRUE, 3), FALSE, FALSE, TRUE, FALSE))
-  expect_equal(find_html_comments(lines, label = "TJH"), 
-               c(rep(FALSE, 9), TRUE, FALSE, FALSE))
-  expect_equal(find_html_comments(lines, label = " TJH "), 
-               c(rep(FALSE, 9), TRUE, FALSE, FALSE))
+  expect_equal(find_html_comments(lines)$start_line, 
+               c(1L, 2L, 3L, 4L, 6L, 7L, 8L, 9L, 10L, 11L))
+  expect_equal(find_html_comments(lines, label = "RMS")$start_line, 
+               c(1L, 2L, 3L, 4L, 6L, 7L, 8L, 11L))
+  expect_equal(find_html_comments(lines, label = "TJH")$start_line, 
+               c(10L))
+  expect_equal(find_html_comments(lines, label = " TJH ")$start_line, 
+               c(10L))
 })
 

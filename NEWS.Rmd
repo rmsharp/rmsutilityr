@@ -1,7 +1,7 @@
 ---
 title: "NEWS"
 author: "R. Mark Sharp"
-date: "07/03/2019"
+date: "`r Sys.Date()`"
 output:
    github_document: default
 
@@ -10,6 +10,9 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+# rmsutilityr 1.1.0.9000 20210215
+-   Added most of code of HTML comment managment
+
 # rmsutilityr 1.0.75 20190703
 -   Added unit tests for vector2string, get_split_format, make_license_df, 
     get_pkg_descriptions
@@ -21,11 +24,9 @@ knitr::opts_chunk$set(echo = TRUE)
 -   Updated get_pkg_descriptions to use CRAN database for dependency lookups
 
 # rmsutilityr 1.0.70
-
 -   Added get_pkg_list function to return a character vector of loaded packages.
 
 # rmsutilityr 1.0.61 20181022 
-
 -   Added a `NEWS.md` file to track changes to the package.
 
 -   Added unit test for is_valid_date_str when anytime was incorporated into 
