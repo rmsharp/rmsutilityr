@@ -3,11 +3,13 @@ title: "Using HTML Comments to Facilitate Colaboration with Git"
 author: "R. Mark Sharp"
 date: "`r Sys.Date()`"
 output:
+  pdf_document:
+    highlight: tango
+    toc: true
+    toc_depth: 2
+    keep_tex: true
   html_document:
     df_print: paged
-  pdf_document:
-    md_extensions:  +raw_attribute
-    keep_tex: true
 vignette: >
   %\VignetteIndexEntry{Using HTML Comments}
   %\usepackage[utf8]{inputenc}
@@ -259,7 +261,9 @@ new_files
 
 ```
 
-You can check for comments in your files quickly with this helper function^[
+## Reviewing Comments
+### Counting Comments
+You can count comments in your files quickly with this helper function^[
 A commented version of the same helper function is included in this package.]
 
 ```{r count-of-selected-comments, eval = TRUE}
@@ -273,28 +277,50 @@ count_selected_comments <- function(files, label = "") {
   comment_count
 }
 
+```
+
+You can count selected comments in the original files.
+
+```{r selective-count-original-files, eval = TRUE, results = "asis"}
 count_selected_comments(files, label = "RMS")
-count_selected_comments(new_files, label = "RMS")
-count_selected_comments(new_files, label = "")
 
 ```
-You can see the differences in the before and after versions of a file with
-the `Rdiff` and `diffr` functions.
 
-```{r use-Rdiff-to-compare-files, eval = TRUE}
-# There is only one file in `files` and in `new_files` so the subsetting is 
-# unnecessary.
+You can then demonstrate that those comments were removed in the 
+[Deleting Comments](Deleting Comments) section above.
+
+```{r selective-count-new-files, eval = TRUE, results = "asis"}
+count_selected_comments(new_files, label = "RMS")
+
+```
+
+Finally, you can see how many comments remain from **TJH**.
+
+```{r selective-count-of-TJH-comments, eval = TRUE, results = "asis"}
+count_selected_comments(new_files, label = "TJH")
+
+```
+
+### Reviewing Differences
+You can see the differences in the before and after versions of a file with
+the `Rdiff` and `diffr` functions^[
+There is only one file in each of `files` and `new_files` so the subsetting 
+that would normally be needed is unnecessary in this example.].
+
+```{r use-Rdiff-to-compare-files, eval = TRUE, results = "asis"}
 tools::Rdiff(from = files[1], to = new_files[1], useDiff = TRUE, Log = TRUE)
 
 ```
-I prefer the HTML output of the `diffr` package. 
-Its use is very similar^[HTML image is shown.].
+
+I prefer the HTML output of the `diffr` package^[HTML image is shown.]. 
+Its use is very similar.
 
 ```{r use-diffr-to-compare-files, eval = FALSE}
 library(diffr)
 diffr(files[1], new_files[1])
 
 ```
+
 ```{r example-diffr, eval = TRUE, fig.width = 6.5, echo = FALSE}
 img <- png::readPNG("./diffr_example.png")
 grid::grid.raster(img)
