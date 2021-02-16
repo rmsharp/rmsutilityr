@@ -15,12 +15,12 @@ matrix:
      include:
          - os: osx
            fortran: false
-#before_install:
-#    - sudo R CMD javareconf
+before_install:
+    - sudo apt-get install texlive-latex-extra
 #   - Rscript -e 'install.packages("rJava", type = "source")'
 script:
-  - R CMD build . --compact-vignettes=gs+qpdf
-  - R CMD check *tar.gz --as-cran
+  - R CMD build . 
+  - R CMD check rmsutilityr_1.1.0.9001.tar.gz --as-cran
 after_success:
   - R -e CODECOV_TOKEN 'covr::codecov()'
   - Rscript -e 'pkgdown::build_site()'
