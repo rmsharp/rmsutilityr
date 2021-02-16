@@ -18,9 +18,9 @@
 #'                                             "<!-- label2 comments-->",
 #'                                             "<!-- label3 comments -->"),
 #'                                           label = "label1")
-#' return_html_comment_text_lines_and_labels(c("<!-- label1 comments -->", 
-#'                                             "<!-- label2 comments-->",
-#'                                             "<!-- label3 comments -->"),
+#' return_html_comment_text_lines_and_labels(c("<!-- label1 first comment -->", 
+#'                                             "<!-- label2 second comment-->",
+#'                                             "<!-- label3 third comment -->"),
 #'                                           label = c("label1", "label3"))
 #' 
 #' @importFrom stringi stri_extract_first_regex stri_sub stri_trim_left
@@ -32,7 +32,14 @@ return_html_comment_text_lines_and_labels <- function(lines, label = "") {
     stri_sub(5, -1) %>%
     stri_trim_left() %>%
     stri_extract_first_regex(pattern = "[\\p{L}*\\p{N}]*")
-  list(comment_text = comments$comment,
+  comment_text <- stri_trim_left(comments$comment) %>%
+    stri_sub(5, -1) %>%
+    stri_trim_left() %>%
+    stri_replace_first_regex(pattern = "[\\p{L}*\\p{N}]*", 
+                             replacement = "") %>%
+    stri_replace_last_fixed(pattern = "-->", replacement = "") %>%
+    stri_trim_both()
+  list(comment_text = comment_text,
        comment_start_line = comments$start_line,
        comment_end_line = comments$end_line,
        comment_label = labels)

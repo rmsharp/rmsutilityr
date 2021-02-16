@@ -8,6 +8,7 @@ reference:
   - '`classify_code_lines`'
   - '`colfmt`'
   - '`combine_vectors`'
+  - '`count_selected_comments`'
   - '`create_wkbk`'
   - '`delete_selected_comments_from_lines`'
   - '`dups_to_empty_str`'
@@ -68,4 +69,5 @@ reference:
   - '`underscoreToCamelCase`'
   - '`underscoreToTitleCase`'
   - '`vector2string`'
+  - '`write_files_after_deleting_selected_comments`'
   - '`xt_print`'

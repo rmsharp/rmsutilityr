@@ -11,9 +11,11 @@ test_that(paste0("get_html_comment_text_lines_and_labels_from_files returns ",
   expect_equal(html_comment_lines_and_labels$file[1], 
                "find_html_comment_test_file.Rmd")
   expect_equal(html_comment_lines_and_labels$comment_start_line, 
-               c(25L, 16L, 29L, 33L, 24L, 21L))
+               c(26L, 16L, 30L, 34L, 25L, 22L))
   expect_equal(html_comment_lines_and_labels$comment_label, 
                c("I", "RMS", "RMS", "RMS", "SRR", "TJH"))
+  expect_equal(html_comment_lines_and_labels$file[1],
+               "find_html_comment_test_file.Rmd")
   
 })                 
 test_that(paste0("get_html_comment_text_lines_and_labels_from_files returns ",
@@ -24,7 +26,7 @@ test_that(paste0("get_html_comment_text_lines_and_labels_from_files returns ",
   expect_equal(html_comment_lines_and_labels$file[1], 
                "find_html_comment_test_file.Rmd")
   expect_equal(html_comment_lines_and_labels$comment_start_line, 
-               c(16L, 29L, 33L, 21L))
+               c(16L, 30L, 34L, 22L))
   expect_equal(html_comment_lines_and_labels$comment_label, 
                c("RMS", "RMS", "RMS", "TJH"))
  })                 
@@ -36,7 +38,7 @@ test_that(paste0("get_html_comment_text_lines_and_labels_from_files returns ",
   expect_equal(html_comment_lines_and_labels$file[1], 
                "find_html_comment_test_file.Rmd")
   expect_equal(html_comment_lines_and_labels$comment_start_line, 
-               c(16L, 29L, 33L))
+               c(16L, 30L, 34L))
   expect_equal(html_comment_lines_and_labels$comment_label, 
                c("RMS", "RMS", "RMS"))
  })                 

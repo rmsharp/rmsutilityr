@@ -1,11 +1,18 @@
 NEWS
 ================
 R. Mark Sharp
-2021-02-15
+2021-02-16
+
+# rmsutilityr 1.1.0.9001 20210215
+
+-   Added sufficient HTML comment management functions to allow current
+    workflow.
+-   Added initial draft of vignette illustrating use of comment
+    management.
 
 # rmsutilityr 1.1.0.9000 20210215
 
--   Added most of code of HTML comment managment
+-   Added most of code of HTML comment management
 
 # rmsutilityr 1.0.75 20190703
 

@@ -1,7 +1,7 @@
 Package: rmsutilityr
 Type: Package
 Title: Utility Functions Used for Reproducible Research
-Version: 1.1.0.9000
+Version: 1.1.0.9001
 Authors@R: person("R. Mark", "Sharp", email = "rmsharp@me.com", , 
     role = c("ctb", "cre"))
 Description: Provides often used functions for report writing.
@@ -20,6 +20,7 @@ Imports:
     xtable
 Suggests:
     roxygen2 (>= 6.0.0),
+    kableExtra,
     knitr,
     rmarkdown,
     testthat
