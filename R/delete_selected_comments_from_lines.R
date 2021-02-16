@@ -1,5 +1,7 @@
 #' Delete selected comments from lines.
 #' 
+## Copyright(c) 2021 R. Mark Sharp
+## This file is part of rmsutilityr
 #' @param lines Character vector of lines to examine.
 #' @param label Optional regex expression that can be used to limit the 
 #' comments found by adding each element of the character vector in turn 

@@ -1,10 +1,12 @@
-#' Identify multiline HTML comments into a single character string.
+#' Merge multiline HTML comments into a single character string.
 #' 
+## Copyright(c) 2021 R. Mark Sharp
+## This file is part of rmsutilityr
 #' @param lines Character vector of lines to examine.
 #' @param isolated Logical value indicating that the comment is the first text
 #' to appear on the line.
 #' @export
-identify_html_comment_lines <- function(lines, isolated = isolated) {
+merge_html_comment_lines <- function(lines, isolated = isolated) {
   set_end_line <- function(i, start_lines, n_lines) {
     if (start_line < start_lines[length(start_lines)])
       j <- min(start_lines[i + 1] - 1, n_lines)

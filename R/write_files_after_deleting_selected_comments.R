@@ -1,5 +1,7 @@
 #' Write files after deleting selected comments.
 #' 
+## Copyright(c) 2021 R. Mark Sharp
+## This file is part of rmsutilityr
 #' @param new_path Character vector of length one indicating the directory
 #' newly created files are to be placed.
 #' @param files Character vector of files to parse.

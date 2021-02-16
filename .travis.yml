@@ -16,7 +16,7 @@ matrix:
          - os: osx
            fortran: false
 before_install:
-    - tlmgr install index texlive-latex-extra
+    - tlmgr install texlive-latex-extra --repository https://mirrors.rit.edu/CTAN/
 #   - Rscript -e 'install.packages("rJava", type = "source")'
 script:
   - R CMD build . 

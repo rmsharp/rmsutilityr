@@ -1,5 +1,7 @@
 #' Count selected comments in files.
 #' 
+## Copyright(c) 2021 R. Mark Sharp
+## This file is part of rmsutilityr
 #' @param files Character vector of files to parse.
 #' @param label Optional regex expression that can be used to limit the 
 #' comments found by adding each element of the character vector in turn 

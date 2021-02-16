@@ -1,5 +1,7 @@
-#' Get labels and line numbers from HTML comments
+#' Get labels, comments, and line numbers from HTML comments
 #' 
+## Copyright(c) 2021 R. Mark Sharp
+## This file is part of rmsutilityr
 #' @returns List with `comment_lines`, which is an integer vector of line 
 #' numbers indicating which lines are comments and `comment_labels`, which is 
 #' a character vector with each comment label.
