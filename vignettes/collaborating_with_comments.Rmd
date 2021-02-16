@@ -3,15 +3,15 @@ title: "Using HTML Comments to Facilitate Colaboration with Git"
 author: "R. Mark Sharp"
 date: "`r Sys.Date()`"
 output:
+  html_document:
+    df_print: paged
   pdf_document:
     md_extensions:  +raw_attribute
     keep_tex: true
-  html_document:
-    df_print: paged
 vignette: >
   %\VignetteIndexEntry{Using HTML Comments}
-  %\VignetteEngine{knitr::rmarkdown}
   %\usepackage[utf8]{inputenc}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 ```{r setup, include=FALSE}
@@ -177,8 +177,8 @@ HTML comments within RMarkdown source files.
 
 -   __get_html_comment_text_lines_and_labels_from_files__ 
 
-Takes a vector of files^[This example uses a single file but a character vector
-with fully qualified file names is expected.]
+Takes a vector of files^[This example uses a single file, however, multiple 
+files with fully qualified file names in the character vector is expected.]
 and labels to retrieve and returns a dataframe with 
 full file paths, the base file names, starting line number of each comment,
 the end line number of each comment, and the identifying labels.
@@ -288,10 +288,15 @@ tools::Rdiff(from = files[1], to = new_files[1], useDiff = TRUE, Log = TRUE)
 
 ```
 I prefer the HTML output of the `diffr` package. 
-Its use is very similar^[HTML output is not shown.].
+Its use is very similar^[HTML image is shown.].
 
 ```{r use-diffr-to-compare-files, eval = FALSE}
 library(diffr)
 diffr(files[1], new_files[1])
+
+```
+```{r example-diffr, eval = TRUE, fig.width = 6.5, echo = FALSE}
+img <- png::readPNG("./diffr_example.png")
+grid::grid.raster(img)
 
 ```
