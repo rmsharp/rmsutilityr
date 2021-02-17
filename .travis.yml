@@ -16,7 +16,7 @@ matrix:
          - os: osx
            fortran: false
 before_install:
-    - tlmgr install texlive-latex-extra
+    - tlmgr install texlive-latex-extra -repository http://mirror.ctan.org/systems/texlive/tlnet
 #   - Rscript -e 'install.packages("rJava", type = "source")'
 script:
   - R CMD build . --compact-vignettes=gs+qpdf
