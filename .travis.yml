@@ -1,6 +1,8 @@
 language: r
 sudo: required
 dist: bionic
+codecov:
+  token: 06bf0eb4-6204-484b-8806-8352bc64a435
 cache:
   - packages
   - github_packages
