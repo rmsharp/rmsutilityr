@@ -16,7 +16,7 @@ matrix:
          - os: osx
            fortran: false
 before_install:
-    - tlmgr update --self -repository https://mirrors.rit.edu/CTAN/systems/texlive/tlnet/
+#    - tlmgr update --self -repository https://mirrors.rit.edu/CTAN/systems/texlive/tlnet/
 #    - tlmgr install texlive-latex-extra -repository https://mirrors.rit.edu/CTAN/systems/texlive/tlnet/
     - tlmgr install texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended -repository http://mirror.ctan.org/systems/texlive/tlnet
 #    texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
