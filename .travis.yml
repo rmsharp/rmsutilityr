@@ -17,6 +17,7 @@ matrix:
            fortran: false
 before_install:
     - tlmgr update --self -repository https://mirrors.rit.edu/CTAN/systems/texlive/tlnet/
+    - tlmgr install texlive-latex-extra -repository https://mirrors.rit.edu/CTAN/systems/texlive/tlnet/
 #    - tlmgr install texlive-latex-extra -repository http://mirror.ctan.org/systems/texlive/tlnet
 #   - Rscript -e 'install.packages("rJava", type = "source")'
 script:
