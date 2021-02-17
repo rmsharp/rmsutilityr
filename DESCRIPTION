@@ -22,6 +22,7 @@ Suggests:
     roxygen2 (>= 6.0.0),
     kableExtra,
     knitr,
+    png,
     rmarkdown,
     testthat
 Encoding: UTF-8

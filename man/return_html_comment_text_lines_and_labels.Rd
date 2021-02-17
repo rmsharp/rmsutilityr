@@ -2,7 +2,7 @@
 % Please edit documentation in R/return_html_comment_text_lines_and_labels.R
 \name{return_html_comment_text_lines_and_labels}
 \alias{return_html_comment_text_lines_and_labels}
-\title{Get labels and line numbers from HTML comments}
+\title{Get labels, comments, and line numbers from HTML comments}
 \usage{
 return_html_comment_text_lines_and_labels(lines, label = "")
 }
@@ -20,7 +20,7 @@ numbers indicating which lines are comments and `comment_labels`, which is
 a character vector with each comment label.
 }
 \description{
-Get labels and line numbers from HTML comments
+Get labels, comments, and line numbers from HTML comments
 }
 \examples{
 return_html_comment_text_lines_and_labels(c("<!-- label1 comments -->", 

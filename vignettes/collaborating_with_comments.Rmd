@@ -15,12 +15,17 @@ vignette: >
   %\usepackage[utf8]{inputenc}
   %\VignetteEngine{knitr::rmarkdown}
 ---
+<!-- RMS Run 
+tools::compactPDF("/Users/msharp/Documents/Development/R/r_workspace/library/rmsutilityr/vignettes", gs_quality = "ebook")
+after building vignette.
+-->
 
 ```{r setup, include=FALSE}
 library(knitr)
 library(rmsutilityr)
 library(stringi)
 library(kableExtra)
+library(png)
 library(xtable)
 options(kableExtra.auto_format = FALSE)
 knitr::opts_chunk$set(echo = TRUE, include = TRUE, eval = FALSE)
@@ -305,7 +310,7 @@ count_selected_comments(new_files, label = "TJH")
 You can see the differences in the before and after versions of a file with
 the `Rdiff` and `diffr` functions^[
 There is only one file in each of `files` and `new_files` so the subsetting 
-that would normally be needed is unnecessary in this example.].
+that is shown and will normally be needed is unnecessary in this example.].
 
 ```{r use-Rdiff-to-compare-files, eval = TRUE, results = "asis"}
 tools::Rdiff(from = files[1], to = new_files[1], useDiff = TRUE, Log = TRUE)

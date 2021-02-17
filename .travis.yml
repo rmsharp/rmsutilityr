@@ -19,7 +19,7 @@ before_install:
     - tlmgr install texlive-latex-extra
 #   - Rscript -e 'install.packages("rJava", type = "source")'
 script:
-  - R CMD build . 
+  - R CMD build . --compact-vignettes=gs+qpdf
   - R CMD check *.tar.gz --as-cran
 after_success:
   - R -e CODECOV_TOKEN 'covr::codecov()'
