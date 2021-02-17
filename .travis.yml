@@ -23,12 +23,9 @@ matrix:
 #    - tlmgr install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended -repository http://mirror.ctan.org/systems/texlive/tlnet
 #    texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
 #   - Rscript -e 'install.packages("rJava", type = "source")'
-r_build_args: --no-build-vignettes --no-manual --no-resave-data
-r_check_args: --as-cran --no-build-vignettes  --ignore-vignettes --no-manual
-
 script:
-  - R CMD build . 
-  - R CMD check *.tar.gz 
+  - R CMD build . --no-build-vignettes --no-manual --no-resave-data
+  - R CMD check *.tar.gz --as-cran --no-build-vignettes  --ignore-vignettes --no-manual
 after_success:
   - R -e CODECOV_TOKEN 'covr::codecov()'
   - Rscript -e 'pkgdown::build_site()'
