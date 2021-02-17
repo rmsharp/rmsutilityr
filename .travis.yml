@@ -41,3 +41,4 @@ env:
   - global:
     - CI=TRUE
     - LINTR_COMMENT_BOT=false
+    - CODECOV_TOKEN=06bf0eb4-6204-484b-8806-8352bc64a435
