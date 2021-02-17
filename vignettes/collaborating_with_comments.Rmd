@@ -269,7 +269,7 @@ new_files
 ## Reviewing Comments
 ### Counting Comments
 You can count comments in your files quickly with this helper function^[
-A commented version of the same helper function is included in this package.]
+A commented version of the same convenience function is included in this package.]
 
 ```{r count-of-selected-comments, eval = TRUE}
 count_selected_comments <- function(files, label = "") {
