@@ -19,6 +19,7 @@ Imports:
     WriteXLS,
     xtable
 Suggests:
+    covr,
     roxygen2 (>= 6.0.0),
     kableExtra,
     knitr,
