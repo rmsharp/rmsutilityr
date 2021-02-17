@@ -16,16 +16,19 @@ matrix:
      include:
          - os: osx
            fortran: false
-before_install:
-  - tlmgr update --self -repository http://mirror.ctan.org/systems/texlive/tlnet/
-  - sudo apt-get install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
+#before_install:
+#  - tlmgr update --self -repository http://mirror.ctan.org/systems/texlive/tlnet/
+#  - sudo apt-get install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
 #    - tlmgr install texlive-latex-extra -repository https://mirrors.rit.edu/CTAN/systems/texlive/tlnet/
 #    - tlmgr install -y texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended -repository http://mirror.ctan.org/systems/texlive/tlnet
 #    texlive-base texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
 #   - Rscript -e 'install.packages("rJava", type = "source")'
+r_build_args: --no-build-vignettes --no-manual --no-resave-data
+r_check_args: --as-cran --no-build-vignettes  --ignore-vignettes --no-manual
+
 script:
-  - R CMD build . --compact-vignettes=gs+qpdf
-  - R CMD check *.tar.gz --as-cran --no-build-vignettes --ignore-vignettes
+  - R CMD build . 
+  - R CMD check *.tar.gz 
 after_success:
   - R -e CODECOV_TOKEN 'covr::codecov()'
   - Rscript -e 'pkgdown::build_site()'
