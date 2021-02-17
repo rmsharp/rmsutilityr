@@ -23,6 +23,7 @@ Suggests:
     roxygen2 (>= 6.0.0),
     kableExtra,
     knitr,
+    pkgdown,
     png,
     rmarkdown,
     testthat

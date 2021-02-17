@@ -5,11 +5,11 @@
 ^.*.MySCMServerInfo
 ^\.*example_wkbk.xlsx$
 ^\.travis\.yml$
-^\.codecov\.yml$
+.codecov\.yml
 .gitignore$
 ^README\.Rmd$
 ^README-.*\.png$
-^NEWS\.Rmd$          # A news file written in RMarkdown
+NEWS.Rmd        # A news file written in RMarkdown
 installation\.Rmd
 ^docs$
 _config\.yml
