@@ -25,7 +25,7 @@ before_install:
 #   - Rscript -e 'install.packages("rJava", type = "source")'
 script:
   - R CMD build . --compact-vignettes=gs+qpdf
-  - R CMD check *.tar.gz --as-cran
+  - R CMD check *.tar.gz --as-cran --no-build-vignettes --ignore-vignettes
 after_success:
   - R -e CODECOV_TOKEN 'covr::codecov()'
   - Rscript -e 'pkgdown::build_site()'
