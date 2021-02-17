@@ -3,15 +3,14 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^.*.MySCMServerInfo
-^.*example_wkbk.xlsx$
-.travis.yml
-.codecov.yml
-.gitignore
+^\.*example_wkbk.xlsx$
+^\.travis\.yml$
+^\.codecov\.yml$
+.gitignore$
 ^README\.Rmd$
 ^README-.*\.png$
-^NEWS.Rmd$          # A news file written in RMarkdown
-installation.Rmd
+^NEWS\.Rmd$          # A news file written in RMarkdown
+installation\.Rmd
 ^docs$
-_config.yml
+_config\.yml
 ^CODE_OF_CONDUCT.md$
-NEWS.Rmd
