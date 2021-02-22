@@ -17,6 +17,5 @@ Character vector with one lines from the
 \description{
 User provides the source code file path. This a a simplistic
 function that simply returns lines between \code{@examples} and the next
-line that starts with \code{#' @}. This is not robust and is completely 
-dependent on my coding style.
+line that starts with \code{#' @}, or anything not \code{#'}.
 }

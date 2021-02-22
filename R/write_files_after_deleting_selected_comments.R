@@ -30,4 +30,3 @@ write_files_after_deleting_selected_comments <-
   }
   new_files
 }
-  
