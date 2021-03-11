@@ -32,8 +32,4 @@ get_and_or_list(c("Bob", "John", "Sam", "Bill"), "or")
 # "Bob, John, Sam, or Bill"
 }
 
-get_and_or_list(c("Bob", "John")) # "Bob and John"
-get_and_or_list(c("Bob", "John"), "or") # "Bob or John"
-get_and_or_list(c("Bob", "John", "Sam", "Bill"), "or")
-# "Bob, John, Sam, or Bill"
 }

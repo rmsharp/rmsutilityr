@@ -1,0 +1,253 @@
+---
+title: "R Logging Package Metrics"
+author: "R. Mark Sharp"
+date: "3/5/2021"
+output:
+  bookdown::pdf_document2: 
+    toc: true
+    toc_depth: 2
+    number_sections: true
+  bookdown::html_document2: 
+    toc: true
+    toc_depth: 2
+
+---
+  
+```{r setup, echo = FALSE}
+library(knitr)
+library(ggplot2)
+library(dlstats)
+library(kableExtra)
+library(rmsutilityr)
+library(rvcheck)
+library(stringi)
+knitr::opts_chunk$set(echo = FALSE) # show all code
+
+```
+```{r get-stats}
+
+pkgs <- c("futile.logger", "logging", "lgr", "log4r", "logger")
+cran_stats_df <- cran_stats(pkgs, use_cache = TRUE)
+licenses_df <- get_pkg_descriptions(pkgs, fields = "License")[["pkg_df"]]
+bad_licenses <- c("AGPL")
+require_approval_licenses <- c("LGPL")
+cant_use <- licenses_df$Package[
+  str_detect_any(licenses_df$License, pattern = bad_licenses, type = "fixed")]
+require_approval <- licenses_df$Package[
+  str_detect_any(licenses_df$License, pattern = require_approval_licenses, 
+                 type = "fixed")]
+
+get_vignette_counts <- function(pkgs) {
+  vignettes <- vignette(package = pkgs)$results[ , 1]
+  vignette_counts <- data.frame()
+  for (pkg in pkgs) {
+    vignette_counts <- 
+      rbind(vignette_counts, 
+            data.frame(Package = pkg,
+                       Count = sum(vignettes == pkg)))
+  }
+  vignette_counts
+} 
+licenses_df <- get_pkg_descriptions(pkgs, fields = "License")$pkg_df
+
+```
+
+
+# Introduction
+The goal of this document is to collect some readily available statistics of
+the logging 
+tools available in R to inform our decisions regarding which tool to use.
+While `r numbers2words(length(cant_use))` of these `r length(pkgs)` packages 
+(`r get_and_or_list(cant_use)`) can't be used by
+some businesses because of current licensing 
+(`r get_and_or_list(licenses_df$License[licenses_df$Package %in% cant_use])`),
+`r ifelse(length(cant_use) > 1, "they", "it")` will not be excluded.
+
+A more complete investigative approach has been presented by
+[@https://doi.org/10.1002/ece3.5970]. This presentation was intended to use five 
+of the criteria presented in that paper but not all have been done:
+
+1   **Maturity** How long ago was its first release on CRAN   
+      -  Not explicitely completed though the downloads plot
+       (Figure \@ref(fig:get-downloads-plot)) indirectly provides that date.   
+2   **Active development** Number of updates in past two years   
+      -  Not completed.   
+3   **Recently updated** Most recent update   
+4   **Documentation available** Is there at least one vignette  
+5   **License** Can it be used in a business setting without potential risk of 
+    forcing disclosure of proprietary or sensitive code?   
+
+The most important considerations in selecting a logging system is demonstrating 
+it will work in your environment and it has the functionality you need.
+
+# Most Recent Update
+
+Once logging packages are recognized as feature complete, frequent updates are 
+not expected.
+However, updates may be forced by changes in to base `R` 
+or their dependencies.
+Note, based on the date of the most recent update,
+`futile.logger` is apparently stable, resilient to changes 
+in `R`, and was created with security features years before they were required 
+by CRAN. It has very few dependencies (`utils`, `lambda.r`, and 
+`futile.options`). Two of the three are by the same author and the
+third is part of the core package set. See Table \@ref(tab:latest-updates).
+
+```{r latest-updates}
+suppressMessages(library(rvest))
+library(ggplot2)
+
+url = 'https://cran.r-project.org/web/packages/available_packages_by_date.html'
+
+CRANpage <- read_html(url)
+tbls <- html_nodes(CRANpage, "table") # since HTML is in table; no need to scrape td/tr elements
+table_1 <- html_table(tbls[1], fill = TRUE)
+loggers_pkgs <- table_1[[1]][table_1[[1]]$Package %in% pkgs, ]
+
+#house cleaning
+loggers_pkgs$Date <- as.Date(loggers_pkgs$Date)
+caption <- "Most recent updates of packages."
+kbl(loggers_pkgs[ , c("Package", "Date")],
+    format = ifelse(knitr::is_latex_output(), "latex", "html"),
+    booktabs = TRUE, caption = caption,
+    row.names = FALSE,
+    col.names = c("Package", "Latest Update"),
+    longtable = TRUE) %>% 
+  kable_styling(latex_options = c("repeat_header", "striped"), 
+                font_size = ifelse(knitr::is_latex_output(), 8, 12)) %>%
+  column_spec(1, width = "15em") %>%
+  column_spec(2, width = "15em") 
+
+
+```
+
+# Downloads
+
+The number of downloads a package experiences is an indicator of interest and
+a weak surrogate of use. See Figure \@ref(fig:get-downloads-plot).
+
+```{r get-downloads-plot, fig.cap = "Number of downloads per month of logging packages", cache = TRUE}
+if (!is.null(cran_stats_df)) {
+  ggplot(cran_stats_df, 
+         aes(end, downloads, group = package, color = package)) +
+    geom_line() + geom_point(aes(shape = package))
+}
+
+```
+
+# Number of Reverse Dependencies
+
+Reverse dependencies are a strong surrogate for use but not necessarily a 
+strong surrogate for use in important packages or applications.
+```{r define-count-dependencies, cache = TRUE}
+count_dependencies <- 
+  function(pkgs, 
+           dependencies = "all",
+           repos = "https://mirrors.nics.utk.edu/cran/") {
+  dependencies_df <- data.frame()
+  installed <- available.packages(repos = repos)
+  for (i in seq_along(pkgs)) {
+    dependent_pkgs <-
+      tools::dependsOnPkgs(
+        pkgs[i],
+        dependencies = dependencies,
+        installed = installed)
+    dependencies_df <- rbind(dependencies_df, 
+                       data.frame(pkg = pkgs[i],
+                                  n_dependencies = length(dependent_pkgs)))
+  }
+  dependencies_df
+}
+```
+Table \@ref(tab:reverse-dependencies-all) counts all dependences 
+(`r get_and_or_list(c("Depends", "Imports", "LinkingTo", "Suggests", "Enhances"))`
+), which is not very meaningful since these will include examples of the other
+loggers in vignettes.
+
+```{r reverse-dependencies-all, eval = TRUE, results = "asis", cache = TRUE}
+dependencies <- c("Depends", "Imports", "LinkingTo", "Suggests", "Enhances")
+dependency_counts <- count_dependencies(pkgs, dependencies = dependencies)
+caption <- paste0("Logging packages and the number of packages currently on ",
+                  "CRAN that are using each.")
+kbl(dependency_counts,
+    format = ifelse(knitr::is_latex_output(), "latex", "html"),
+    booktabs = TRUE, caption = caption,
+    row.names = FALSE,
+    col.names = c("Package", "Number of Dependencies"),
+    longtable = TRUE) %>% 
+  kable_styling(latex_options = c("repeat_header", "striped"), 
+                font_size = ifelse(knitr::is_latex_output(), 8, 12)) %>%
+  column_spec(1, width = "15em") %>%
+  column_spec(2, width = "15em") 
+
+```
+
+Table \@ref(tab:reverse-dependencies-required) shows only the counts of 
+essential dependences 
+(`r get_and_or_list(c("Depends", "Imports", "LinkingTo"))`), which is 
+a more direct measure of use, but leaves out all uses that are not in CRAN.
+The number of uses in CRAN is always going to be very small as logging is 
+primarily used in applications and purpose driven scripts and in 
+seldom desired in most general purpose packages.
+
+
+```{r reverse-dependencies-required, eval = TRUE, results = "asis", cache = TRUE}
+dependencies <- c("Depends", "Imports", "LinkingTo")
+dependency_counts <- count_dependencies(pkgs, dependencies = dependencies)
+caption <- paste0("Logging packages and the number of packages currently on ",
+                  "CRAN that are using each.")
+kbl(dependency_counts,
+    format = ifelse(knitr::is_latex_output(), "latex", "html"),
+    booktabs = TRUE, caption = caption,
+    row.names = FALSE,
+    col.names = c("Package", "Number of Dependencies"),
+    longtable = TRUE) %>% 
+  kable_styling(latex_options = c("repeat_header", "striped"), 
+                font_size = ifelse(knitr::is_latex_output(), 8, 12)) %>%
+  column_spec(1, width = "15em") %>%
+  column_spec(2, width = "15em") 
+
+```
+# Availability of Vignettes
+While not required, tutorial vignettes are a convenience. The number and even
+the availability of tutorials within the parent package can be misleading since
+the practice of including vignettes within packages was far less common in 
+the past. Fortunately it has been growing in 
+frequency. Counts of availabe vignettes are shown in Table 
+\@ref(tab:vignette-counts).
+
+```{r vignette-counts}
+caption <- "Count of vignettes within the packages."
+kbl(get_vignette_counts(pkgs),
+    format = ifelse(knitr::is_latex_output(), "latex", "html"),
+    booktabs = TRUE, caption = caption,
+    row.names = FALSE,
+    col.names = c("Package", "Number of Vignettes"),
+    longtable = TRUE) %>% 
+  kable_styling(latex_options = c("repeat_header", "striped"), 
+                font_size = ifelse(knitr::is_latex_output(), 8, 12)) %>%
+  column_spec(1, width = "15em") %>%
+  column_spec(2, width = "15em") 
+
+```
+
+
+# Licensing
+
+Table \@ref(tab:license) shows the licenses used by each of the `r length(pkgs)`
+packages. Note that the LGPL licesnse is more permissive the GPL licenses.
+
+```{r license}
+caption <- "The license for each package"
+kbl(licenses_df,
+    format = ifelse(knitr::is_latex_output(), "latex", "html"),
+    booktabs = TRUE, caption = caption,
+    row.names = FALSE,
+    col.names = c("Package", "License"),
+    longtable = FALSE) %>% 
+  kable_styling(latex_options = c("repeat_header", "striped"), 
+                font_size = ifelse(knitr::is_latex_output(), 8, 12)) %>%
+  column_spec(1, width = "15em") %>%
+  column_spec(2, width = "15em")
+
+```

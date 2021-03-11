@@ -1,7 +1,7 @@
 context("test_get_html_comment_text_lines_and_labels_from_files")
 library(testthat)
 library(rmsutilityr)
-files = system.file("testdata","find_html_comment_test_file.Rmd", 
+files <- system.file("testdata","find_html_comment_test_file.Rmd", 
                        package = "rmsutilityr")
 test_that(paste0("get_html_comment_text_lines_and_labels_from_files returns ",
                  "correct object with no label argument"), {

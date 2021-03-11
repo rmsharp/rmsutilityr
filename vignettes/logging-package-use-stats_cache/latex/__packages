@@ -1,0 +1,10 @@
+base
+knitr
+ggplot2
+dlstats
+kableExtra
+rmsutilityr
+rvcheck
+stringi
+xml2
+rvest

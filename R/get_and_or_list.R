@@ -18,11 +18,6 @@
 #' to be put in a list.
 #' @param conjunction The conjunction to be used as the connector.
 #' This is usually `and' or `or' with `and' being the default.
-#' @examples
-#' get_and_or_list(c("Bob", "John")) # "Bob and John"
-#' get_and_or_list(c("Bob", "John"), "or") # "Bob or John"
-#' get_and_or_list(c("Bob", "John", "Sam", "Bill"), "or")
-#' # "Bob, John, Sam, or Bill"
 #' @import stringi
 #' @export
 get_and_or_list <- function(c_vector, conjunction = "and") {

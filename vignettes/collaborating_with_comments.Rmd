@@ -206,15 +206,21 @@ caption <-
   knitr:::escape_latex(stri_c("Output of the ", 
          "get_html_comment_text_lines_and_labels_from_files ",
          "function includes all comments when no 'label' parameter is ", 
-         "provided."))
+         "provided. The columns include the file name (no path), ",
+         "the possible label, the line number where the comment ",
+         "starts, and the line number where the comment ends."))
 
 
- xtable(html_comment_lines_and_labels[ , c("file", "comment_label", 
+ kbl(html_comment_lines_and_labels[ , c("file", "comment_label", 
                                             "comment_start_line", 
                                             "comment_end_line")],
-     booktabs = TRUE, caption = caption) %>% 
-   xtable2kable() %>%
-   kable_styling(latex_options = "striped")
+     format = ifelse(knitr::is_latex_output(), "latex", "html"),
+     longtable = TRUE, booktabs = TRUE,
+     caption = caption,
+     row.names = FALSE,
+     col.names = c("File", "Label", "Start", "End")) %>%
+   kable_styling(latex_options = c("repeat_header", "striped"), 
+                 font_size = ifelse(knitr::is_latex_output(), 8, 12))
 
 ```
 
@@ -234,12 +240,20 @@ caption <-
          "comment labels."))
 
 
- xtable(html_comment_lines_and_labels[ , c("file", "comment_label", 
-                                            "comment_text")],
-     booktabs = TRUE, caption = caption) %>% 
-   xtable2kable() %>%
-   kable_styling(latex_options = "striped", font_size = 9) %>%
-   column_spec(4, width = "20em")
+ kbl(html_comment_lines_and_labels[ , c("file", "comment_label",
+                                        "comment_start_line",
+                                        "comment_text")],
+     format = ifelse(knitr::is_latex_output(), "latex", "html"),
+     booktabs = TRUE, caption = caption,
+     row.names = FALSE,
+     col.names = c("File", "Label", "Start", "Text"),
+     longtable = TRUE) %>% 
+   kable_styling(latex_options = c("repeat_header", "striped"), 
+                 font_size = ifelse(knitr::is_latex_output(), 8, 12)) %>%
+   column_spec(1, width = "15em") %>%
+   column_spec(2, width = "5em") %>%
+   column_spec(3, width = "5em") %>%
+   column_spec(4, width = "25em") 
 
 ```
 
