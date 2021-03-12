@@ -80,5 +80,4 @@ display_selected_code_comments <-
       column_spec(2, width = "5em") %>%
       column_spec(3, width = "5em") %>%
       column_spec(4, width = "25em")
-    selected_code_comments
   }
