@@ -10,6 +10,8 @@ Depends:
 Imports:
     anytime,
     jsonlite,
+    kableExtra,
+    knitr,
     magrittr,
     stats,
     stringi,
