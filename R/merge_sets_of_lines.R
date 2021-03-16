@@ -16,7 +16,7 @@
 #' #' comments.
 #' #' @examples
 #' #' library(rmsutilityr)
-#' file <- system.file("testdata","find_html_comment_test_file.Rmd", 
+#' file <- system.file("testdata","find_html_comment_test_file_1.Rmd", 
 #'                              package = "rmsutilityr")
 #' 
 #' lines <- readLines(file)                     

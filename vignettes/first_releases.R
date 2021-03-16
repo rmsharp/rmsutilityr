@@ -1,26 +1,12 @@
----
-title: "First Releases"
-author: "R. Mark Sharp"
-date: "3/8/2021"
-output: html_document
-vignette: >
-  %\VignetteIndexEntry{First Releases} 
-  %\usepackage[UTF-8]{inputenc}
-  %\VignetteEngine{knitr::rmarkdown_notangle} 
----
-
-```{r setup, include=FALSE}
+## ----setup, include=FALSE-----------------------------------------------------
 knitr::opts_chunk$set(echo = TRUE)
 library(rvest)
 library(ggplot2)
 library(dplyr)
 library(lubridate)
 
-```
 
-## Number of packages updates by Year of last update
-
-```{r package-updates-by-last-update}
+## ----package-updates-by-last-update-------------------------------------------
 
 url = 'https://cran.r-project.org/web/packages/available_packages_by_date.html'
 
@@ -42,13 +28,8 @@ ggplot(dd, aes(x = Date)) +
                limits = as.Date(c("2005-01-01", 
                                   format(Sys.Date(), "%Y-%m-%d"))))
 
-```
 
-## Updates by Year
-
-You can also embed plots, for example:
-
-```{r updates-by-year, echo=FALSE}
+## ----updates-by-year, echo=FALSE----------------------------------------------
 
 # updates by year
 dd_y <- dd %>%
@@ -59,5 +40,4 @@ dd_y <- dd %>%
     nof = n()
   )
 
-```
 

@@ -4,12 +4,18 @@ author: "R. Mark Sharp"
 date: "3/5/2021"
 output:
   bookdown::pdf_document2: 
+    includes:
+        in_header: colortbl_package.sty
     toc: true
     toc_depth: 2
     number_sections: true
   bookdown::html_document2: 
     toc: true
     toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{GeneKeepR Tutorial} 
+  %\usepackage[UTF-8]{inputenc}
+  %\VignetteEngine{knitr::rmarkdown_notangle} 
 
 ---
   
@@ -21,7 +27,7 @@ library(kableExtra)
 library(rmsutilityr)
 library(rvcheck)
 library(stringi)
-knitr::opts_chunk$set(echo = FALSE) # show all code
+knitr::opts_chunk$set(echo = FALSE, cache = TRUE) # show all code
 
 ```
 ```{r get-stats}

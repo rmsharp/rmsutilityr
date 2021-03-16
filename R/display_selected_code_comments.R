@@ -28,7 +28,6 @@
 #' immediately after "<!--" in the regex expression. The resulting logical
 #' vectors are OR'd together to combine their results.
 #' @importFrom kableExtra kbl kable_styling column_spec
-#' @import knitr
 #' @export
 display_selected_code_comments <-
   function(path = ".",
@@ -49,15 +48,11 @@ display_selected_code_comments <-
       get_html_comment_text_lines_and_labels_from_files(files, label = label)
     
     caption <-
-      knitr:::escape_latex(
-        stri_c(
-          "Output of the ",
-          "get_html_comment_text_lines_and_labels_from_files ",
+        stri_c("Output of the ",
+          "get\\_html\\_comment\\_text\\_lines\\_and\\_labels\\_from\\_files ",
           "function includes text of comments from selected ",
-          "comment labels."
-        )
-      )
-    
+          "comment labels.")
+
     selected_code_comments <-
       html_comment_lines_and_labels[, c("file",
                                         "comment_label",
