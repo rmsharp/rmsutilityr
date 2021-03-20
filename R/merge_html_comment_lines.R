@@ -7,7 +7,7 @@
 #' to appear on the line.
 #' @export
 merge_html_comment_lines <- function(lines, isolated = isolated) {
-  set_end_line <- function(i, start_lines, n_lines) {
+  set_end_line <- function(start_line, i, start_lines, n_lines) {
     if (start_line < start_lines[length(start_lines)])
       j <- min(start_lines[i + 1] - 1, n_lines)
     else
@@ -21,7 +21,7 @@ merge_html_comment_lines <- function(lines, isolated = isolated) {
   end_lines <- integer(0)
   for (i in seq_along(start_lines)) {
     start_line <- start_lines[i]
-    end_line <- set_end_line(i, start_lines, length(lines))
+    end_line <- set_end_line(start_line, i, start_lines, length(lines))
     comment_num <- comment_num + 1
         
     for (line_num in start_line:end_line) {

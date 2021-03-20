@@ -27,8 +27,7 @@ test_that("get_pkg_descriptions retrieve correct information", {
   expect_true(all(which_all_pkgs$pkg_df$Package %in% c("stringr", "covr", "glue", "htmltools", "htmlwidgets", "knitr", 
                                                 "magrittr", "rmarkdown", "stringi", "testthat")))
   expect_true(nrow(all_pkgs$pkg_df) < nrow(session_pkgs$pkg_df))
-  cat(c("png", "testthat", "stringi", "stringr") %in% 
-        session_pkgs$pkg_df$Package)
-  expect_equal(c("glue", "testthat", "stringi", "stringr") %in% 
-                    session_pkgs$pkg_df$Package, c(TRUE, TRUE, TRUE, FALSE))
+  expect_equal(is.element(c("png", "testthat", "stringi", "stringr"),
+                    session_pkgs$pkg_df$Package), c(FALSE, TRUE, TRUE, TRUE))
 })
+

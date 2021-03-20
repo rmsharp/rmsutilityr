@@ -197,8 +197,11 @@ provided.
 
 
 ```{r get-all-comments-from-file, eval = TRUE, results = "markdown"}
-files = system.file("testdata","find_html_comment_test_file_1.Rmd", 
-                       package = "rmsutilityr")
+files <- system.file("testdata","find_html_comment_test_file_1.Rmd", 
+                   package = "rmsutilityr")
+files <- c(files, system.file("testdata", "sample_dir", 
+                              "find_html_comment_test_file_2.Rmd", 
+                              package = "rmsutilityr"))
 html_comment_lines_and_labels <- 
   get_html_comment_text_lines_and_labels_from_files(files)
 
@@ -271,8 +274,11 @@ and a directory to place the edited files in to using the
 `write_files_after_deleting_selected_comments` function.
 
 ```{r remove-selected-collaborators-comments, eval = TRUE, results = "markdown"}
-files = system.file("testdata","find_html_comment_test_file_1.Rmd", 
+files <- system.file("testdata","find_html_comment_test_file_1.Rmd", 
                    package = "rmsutilityr")
+files <- c(files, system.file("testdata", "sample_dir", 
+                              "find_html_comment_test_file_2.Rmd", 
+                              package = "rmsutilityr"))
 new_files <- 
   write_files_after_deleting_selected_comments(files, new_path = tempdir(), 
                                                label = "RMS", overwrite = TRUE)
@@ -301,7 +307,7 @@ count_selected_comments <- function(files, label = "") {
 You can count selected comments in the original files.
 
 ```{r selective-count-original-files, eval = TRUE, results = "asis"}
-count_selected_comments(files, label = "RMS")
+count_selected_comments(new_files$original_file, label = "RMS")
 
 ```
 
@@ -309,14 +315,14 @@ You can then demonstrate that those comments were removed in the
 [Deleting Comments](Deleting Comments) section above.
 
 ```{r selective-count-new-files, eval = TRUE, results = "asis"}
-count_selected_comments(new_files, label = "RMS")
+count_selected_comments(new_files$new_file, label = "RMS")
 
 ```
 
 Finally, you can see how many comments remain from **TJH**.
 
 ```{r selective-count-of-TJH-comments, eval = TRUE, results = "asis"}
-count_selected_comments(new_files, label = "TJH")
+count_selected_comments(new_files$new_file, label = "TJH")
 
 ```
 
@@ -327,7 +333,8 @@ There is only one file in each of `files` and `new_files` so the subsetting
 that is shown and will normally be needed is unnecessary in this example.].
 
 ```{r use-Rdiff-to-compare-files, eval = TRUE, results = "asis"}
-tools::Rdiff(from = files[1], to = new_files[1], useDiff = TRUE, Log = TRUE)
+tools::Rdiff(from = new_files$original_file[1], to = new_files$new_file[1], 
+             useDiff = TRUE, Log = TRUE)
 
 ```
 
@@ -336,7 +343,7 @@ Its use is very similar.
 
 ```{r use-diffr-to-compare-files, eval = FALSE}
 library(diffr)
-diffr(files[1], new_files[1])
+diffr(new_files$original_file[1], new_files$new_file[1])
 
 ```
 

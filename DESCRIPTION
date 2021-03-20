@@ -5,6 +5,7 @@ Version: 1.1.0.9001
 Authors@R: person("R. Mark", "Sharp", email = "rmsharp@me.com", , 
     role = c("ctb", "cre"))
 Description: Provides often used functions for report writing.
+Language: en-US
 Depends:
     R (>= 3.1.2)
 Imports:

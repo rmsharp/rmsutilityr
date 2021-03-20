@@ -1,7 +1,7 @@
 context("test_write_files_after_deleting_selected_comments")
 library(testthat)
 library(rmsutilityr)
-files = system.file("testdata","find_html_comment_test_file_1.Rmd", 
+files <- system.file("testdata","find_html_comment_test_file_1.Rmd", 
                    package = "rmsutilityr")
 files <- c(files, system.file("testdata", "sample_dir", 
                               "find_html_comment_test_file_2.Rmd", 

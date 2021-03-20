@@ -9,7 +9,8 @@
 #' vectors are OR'd together to combine their results.
 #' 
 #' @export
-get_html_comment_text_lines_and_labels_from_files <- function(files, label = "") {
+get_html_comment_text_lines_and_labels_from_files <- 
+  function(files, label = "") {
   files_lines_labels <- data.frame()
   for (file in files) {
     lines <- readLines(file)
