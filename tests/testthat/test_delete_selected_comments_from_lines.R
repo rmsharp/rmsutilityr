@@ -1,7 +1,7 @@
 context("test_get_html_comment_text_lines_and_labels_from_files")
 library(testthat)
 library(rmsutilityr)
-file = system.file("testdata","find_html_comment_test_file.Rmd", 
+file = system.file("testdata","find_html_comment_test_file_1.Rmd", 
                        package = "rmsutilityr")
 lines <- readLines(file)
 test_that(paste0("delete_selected_comments_from_lines returns ",

@@ -12,8 +12,14 @@
 #' The default value of NULL corresponds to all libraries currently known. 
 #' If the default is used, the loaded packages and namespaces are searched 
 #' before the libraries.
-#' @param fields a character vector giving the tags of fields to return 
-#' (if other fields occur in the file they are ignored).
+#' @param fields a character vector giving the tags of fields to return. 
+#' The field "Package" is always returned.  
+#' If other fields occur in the DESCRIPTION file, they are ignored. 
+#' Possible fields include "Package", "Version", "Priority", "Depends", 
+#' "Imports", "LinkingTo", "Suggests", "Enhances", "License", 
+#' "License_is_FOSS", "License_restricts_use", "OS_type", "Archs", "MD5sum", 
+#' "NeedsCompilation", "File", and "Repository".
+#' 
 #' @param base logical value if TRUE base packages are included
 #' @param dependencies logical value if TRUE, dependencies are recursively 
 #' added.
@@ -48,14 +54,14 @@ get_pkg_descriptions <- function(pkgs = NULL, lib.loc = NULL,
            get_cran_db = NULL) {
   possible_fields <- c("Package", "Version", "Priority", "Depends", "Imports", 
                        "LinkingTo", "Suggests", "Enhances", "License", 
-                       "License_is_FOSS", "License_restricts_use", 
+                       "License_is_FOSS", "License_restricts_use",
                        "OS_type", "Archs", "MD5sum", "NeedsCompilation", 
                        "File", "Repository"
   )
   if (is.null(fields)) {
     fields <- possible_fields
   } else {
-    fields <- intersect(fields, possible_fields)
+    fields <- unique(c("Package", intersect(fields, possible_fields)))
   }
   if (is.null(pkgs))
     pkgs <- get_pkg_list(base = base)
@@ -76,7 +82,7 @@ get_pkg_descriptions <- function(pkgs = NULL, lib.loc = NULL,
   }
     
   packages <- as.data.frame(db, stringsAsFactors = FALSE)
-  pkg_df <- packages[packages$Package %in% required, fields]
+  pkg_df <- packages[packages$Package %in% required, fields, drop = FALSE]
   
   if (dependencies) {
     pkg_dependencies_df <- merge(pkg_dependencies_df, pkg_df, by.x = "Dependency",

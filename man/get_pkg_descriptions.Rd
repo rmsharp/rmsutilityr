@@ -27,8 +27,13 @@ The default value of NULL corresponds to all libraries currently known.
 If the default is used, the loaded packages and namespaces are searched 
 before the libraries.}
 
-\item{fields}{a character vector giving the tags of fields to return 
-(if other fields occur in the file they are ignored).}
+\item{fields}{a character vector giving the tags of fields to return. 
+The field "Package" is always returned.  
+If other fields occur in the DESCRIPTION file, they are ignored. 
+Possible fields include "Package", "Version", "Priority", "Depends", 
+"Imports", "LinkingTo", "Suggests", "Enhances", "License", 
+"License_is_FOSS", "License_restricts_use", "OS_type", "Archs", "MD5sum", 
+"NeedsCompilation", "File", and "Repository".}
 
 \item{base}{logical value if TRUE base packages are included}
 

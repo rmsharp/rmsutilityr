@@ -1,19 +1,23 @@
 Package: rmsutilityr
 Type: Package
 Title: Utility Functions Used for Reproducible Research
-Version: 1.1.0.9001
+Version: 1.1.1.9000
 Authors@R: person("R. Mark", "Sharp", email = "rmsharp@me.com", , 
     role = c("ctb", "cre"))
 Description: Provides often used functions for report writing.
+Language: en-US
 Depends:
-    R (>= 3.1.2)
+    R (>= 3.5.0)
 Imports:
     anytime,
     jsonlite,
+    kableExtra,
+    knitr,
     magrittr,
     stats,
     stringi,
     lubridate,
+    rmarkdown,
     tools,
     utils,
     WriteXLS,
@@ -21,11 +25,8 @@ Imports:
 Suggests:
     covr,
     roxygen2 (>= 6.0.0),
-    kableExtra,
-    knitr,
     pkgdown,
     png,
-    rmarkdown,
     testthat
 Encoding: UTF-8
 License: MIT + file LICENSE

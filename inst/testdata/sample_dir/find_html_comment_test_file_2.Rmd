@@ -1,0 +1,50 @@
+---
+title: "test Rmd file number 2 with HTML comments"
+author: "R. Mark Sharp"
+date: "3/15/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+<!-- RMS This is a comment that I want to notice later. To help others see it,
+ I decided to write more words than are needed.
+-->
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+<!-- TJH When I see this I get to think of the best coworker ever.
+-->
+
+<!-- SRR When I see this I get to think of the best coworker ever. -->
+<!-- I am not thinking of much here -->
+
+This is more text
+
+<!-- RMS 
+Let's count this one
+-->
+
+<!--
+RMS I am counting this too. -->
+
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

@@ -197,8 +197,11 @@ provided.
 
 
 ```{r get-all-comments-from-file, eval = TRUE, results = "markdown"}
-files = system.file("testdata","find_html_comment_test_file.Rmd", 
-                       package = "rmsutilityr")
+files <- system.file("testdata","find_html_comment_test_file_1.Rmd", 
+                   package = "rmsutilityr")
+files <- c(files, system.file("testdata", "sample_dir", 
+                              "find_html_comment_test_file_2.Rmd", 
+                              package = "rmsutilityr"))
 html_comment_lines_and_labels <- 
   get_html_comment_text_lines_and_labels_from_files(files)
 
@@ -206,15 +209,21 @@ caption <-
   knitr:::escape_latex(stri_c("Output of the ", 
          "get_html_comment_text_lines_and_labels_from_files ",
          "function includes all comments when no 'label' parameter is ", 
-         "provided."))
+         "provided. The columns include the file name (no path), ",
+         "the possible label, the line number where the comment ",
+         "starts, and the line number where the comment ends."))
 
 
- xtable(html_comment_lines_and_labels[ , c("file", "comment_label", 
+ kbl(html_comment_lines_and_labels[ , c("file", "comment_label", 
                                             "comment_start_line", 
                                             "comment_end_line")],
-     booktabs = TRUE, caption = caption) %>% 
-   xtable2kable() %>%
-   kable_styling(latex_options = "striped")
+     format = ifelse(knitr::is_latex_output(), "latex", "html"),
+     longtable = TRUE, booktabs = TRUE,
+     caption = caption,
+     row.names = FALSE,
+     col.names = c("File", "Label", "Start", "End")) %>%
+   kable_styling(latex_options = c("repeat_header", "striped"), 
+                 font_size = ifelse(knitr::is_latex_output(), 8, 12))
 
 ```
 
@@ -222,7 +231,7 @@ This same function can be used to review the text of comments from selected
 collaborators.
 
 ```{r get-selected-comment-text-from-file, eval = TRUE, results = "markdown"}
-files = system.file("testdata","find_html_comment_test_file.Rmd", 
+files = system.file("testdata","find_html_comment_test_file_1.Rmd", 
                        package = "rmsutilityr")
 html_comment_lines_and_labels <- 
   get_html_comment_text_lines_and_labels_from_files(files, label = "RMS")
@@ -234,12 +243,20 @@ caption <-
          "comment labels."))
 
 
- xtable(html_comment_lines_and_labels[ , c("file", "comment_label", 
-                                            "comment_text")],
-     booktabs = TRUE, caption = caption) %>% 
-   xtable2kable() %>%
-   kable_styling(latex_options = "striped", font_size = 9) %>%
-   column_spec(4, width = "20em")
+ kbl(html_comment_lines_and_labels[ , c("file", "comment_label",
+                                        "comment_start_line",
+                                        "comment_text")],
+     format = ifelse(knitr::is_latex_output(), "latex", "html"),
+     booktabs = TRUE, caption = caption,
+     row.names = FALSE,
+     col.names = c("File", "Label", "Start", "Text"),
+     longtable = TRUE) %>% 
+   kable_styling(latex_options = c("repeat_header", "striped"), 
+                 font_size = ifelse(knitr::is_latex_output(), 8, 12)) %>%
+   column_spec(1, width = "15em") %>%
+   column_spec(2, width = "5em") %>%
+   column_spec(3, width = "5em") %>%
+   column_spec(4, width = "25em") 
 
 ```
 
@@ -257,11 +274,14 @@ and a directory to place the edited files in to using the
 `write_files_after_deleting_selected_comments` function.
 
 ```{r remove-selected-collaborators-comments, eval = TRUE, results = "markdown"}
-files = system.file("testdata","find_html_comment_test_file.Rmd", 
+files <- system.file("testdata","find_html_comment_test_file_1.Rmd", 
                    package = "rmsutilityr")
+files <- c(files, system.file("testdata", "sample_dir", 
+                              "find_html_comment_test_file_2.Rmd", 
+                              package = "rmsutilityr"))
 new_files <- 
-  write_files_after_deleting_selected_comments(new_path = tempdir(), 
-                                               files, label = "RMS")
+  write_files_after_deleting_selected_comments(files, new_path = tempdir(), 
+                                               label = "RMS", overwrite = TRUE)
 new_files
 
 ```
@@ -287,7 +307,7 @@ count_selected_comments <- function(files, label = "") {
 You can count selected comments in the original files.
 
 ```{r selective-count-original-files, eval = TRUE, results = "asis"}
-count_selected_comments(files, label = "RMS")
+count_selected_comments(new_files$original_file, label = "RMS")
 
 ```
 
@@ -295,14 +315,14 @@ You can then demonstrate that those comments were removed in the
 [Deleting Comments](Deleting Comments) section above.
 
 ```{r selective-count-new-files, eval = TRUE, results = "asis"}
-count_selected_comments(new_files, label = "RMS")
+count_selected_comments(new_files$new_file, label = "RMS")
 
 ```
 
 Finally, you can see how many comments remain from **TJH**.
 
 ```{r selective-count-of-TJH-comments, eval = TRUE, results = "asis"}
-count_selected_comments(new_files, label = "TJH")
+count_selected_comments(new_files$new_file, label = "TJH")
 
 ```
 
@@ -313,7 +333,8 @@ There is only one file in each of `files` and `new_files` so the subsetting
 that is shown and will normally be needed is unnecessary in this example.].
 
 ```{r use-Rdiff-to-compare-files, eval = TRUE, results = "asis"}
-tools::Rdiff(from = files[1], to = new_files[1], useDiff = TRUE, Log = TRUE)
+tools::Rdiff(from = new_files$original_file[1], to = new_files$new_file[1], 
+             useDiff = TRUE, Log = TRUE)
 
 ```
 
@@ -322,7 +343,7 @@ Its use is very similar.
 
 ```{r use-diffr-to-compare-files, eval = FALSE}
 library(diffr)
-diffr(files[1], new_files[1])
+diffr(new_files$original_file[1], new_files$new_file[1])
 
 ```
 

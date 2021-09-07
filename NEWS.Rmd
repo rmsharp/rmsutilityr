@@ -10,6 +10,14 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+# rmsutilityr 1.1.1.9000 20210903
+-   Added dependency on R (> 3.5.0) because of serialization of objects being 
+    used were created with formate 3.
+-   Added \code{punct} logical parameter to \code{get_and_or_list} to determine
+    whether (\code{TRUE}, default) or not (\code{FALSE}) to put a comma before
+    the congunction. Does not break prior use of the function.
+
 # rmsutilityr 1.1.0.9001 20210215
 -   Added sufficient HTML comment management functions to allow current 
     workflow.

@@ -5,17 +5,18 @@
 \title{Write files after deleting selected comments.}
 \usage{
 write_files_after_deleting_selected_comments(
-  new_path,
   files,
+  new_path,
   label = "",
-  isolated = TRUE
+  isolated = TRUE,
+  overwrite = FALSE
 )
 }
 \arguments{
+\item{files}{Character vector of files to parse.}
+
 \item{new_path}{Character vector of length one indicating the directory
 newly created files are to be placed.}
-
-\item{files}{Character vector of files to parse.}
 
 \item{label}{Optional regex expression that can be used to limit the 
 comments found by adding each element of the character vector in turn 
@@ -24,6 +25,8 @@ vectors are OR'd together to combine their results.}
 
 \item{isolated}{Logical value indicating that the comment is the first text
 to appear on the line.}
+
+\item{overwrite}{logical; should existing destination files be overwritten?}
 }
 \description{
 Write files after deleting selected comments.
