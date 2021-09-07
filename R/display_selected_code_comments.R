@@ -16,6 +16,14 @@
 #' }
 #' The user is free to create the list of files anyway desired and provide them
 #' to the \code{path} argument.
+
+#' @examples 
+#' files = system.file("testdata", "find_html_comment_test_file_1.Rmd",
+#'                     package = "rmsutilityr")
+#' display_selected_code_comments(path = dirname(files),
+#'                                          pattern = "Rmd",
+#'                                          label = "RMS")
+#' 
 #' @param path a character vector of full path names; the default corresponds to 
 #' the working directory, getwd(). Tilde expansion (see path.expand) is 
 #' performed. Missing values will be ignored. 

@@ -5,7 +5,7 @@
 \title{Returns a one element character string with correct punctuation for
 a list made up of the elements of the character vector argument.}
 \usage{
-get_and_or_list(c_vector, conjunction = "and")
+get_and_or_list(c_vector, conjunction = "and", punct = TRUE)
 }
 \arguments{
 \item{c_vector}{Character vector containing the list of words
@@ -13,12 +13,18 @@ to be put in a list.}
 
 \item{conjunction}{The conjunction to be used as the connector.
 This is usually `and' or `or' with `and' being the default.}
+
+\item{punct}{logical varialble when TRUE results in a comma "," being
+place before the conjunction and when FALSE no punctuation is inserted
+when the list has three or more elements. Defualt value is TRUE.}
 }
 \value{
 a character vector of length one containing the a single correctly
 punctuated character string that list each element in the first arguments
 vector with commas between if there are more than two elements with the
-last two elements joined by the selected conjunction.
+last two elements joined by the selected conjunction. A comma, ",", 
+preceeds the conjuction unless the \code{punct} parameter is set to 
+\code{FALSE}.
 }
 \description{
 Returns a one element character string with correct punctuation for
@@ -30,6 +36,8 @@ get_and_or_list(c("Bob", "John")) # "Bob and John"
 get_and_or_list(c("Bob", "John"), "or") # "Bob or John"
 get_and_or_list(c("Bob", "John", "Sam", "Bill"), "or")
 # "Bob, John, Sam, or Bill"
+get_and_or_list(c("Bob", "John", "Sam", "Bill"), punct = FALSE)
+# "Bob, John, Sam and Bill"
 }
 
 }

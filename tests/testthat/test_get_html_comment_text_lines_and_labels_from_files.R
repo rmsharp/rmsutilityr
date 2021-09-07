@@ -1,3 +1,5 @@
+## Copyright(c) 2021 R. Mark Sharp
+## This file is part of rmsutilityr
 context("test_get_html_comment_text_lines_and_labels_from_files")
 library(testthat)
 library(rmsutilityr)

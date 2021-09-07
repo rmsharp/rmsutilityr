@@ -1,7 +1,7 @@
-#' Read in file and find, classify, and count comments by label type.
-#' 
 ## Copyright(c) 2021 R. Mark Sharp
 ## This file is part of rmsutilityr
+#' Read in file and find, classify, and count comments by label type.
+#' 
 #' @param files Names of files
 #' @param label Optional regex expression that can be used to limit the 
 #' comments found by adding each element of the character vector in turn 

@@ -1,3 +1,5 @@
+## Copyright(c) 2021 R. Mark Sharp
+## This file is part of rmsutilityr
 context("get_and_or_list")
 test_that("get_and_or_list correct forms word lists", {
   word_vec <- numbers2words(1:4)
@@ -6,6 +8,8 @@ test_that("get_and_or_list correct forms word lists", {
                                "one, two, three, and four")
   expect_equal(get_and_or_list(word_vec, conjunction = "or"), 
                                "one, two, three, or four")
+  expect_equal(get_and_or_list(word_vec, punct = FALSE), 
+               "one, two, three and four")
   expect_equal(get_and_or_list(word_vec[1:2]), 
                "one and two")
   expect_equal(get_and_or_list(word_vec[1:2], conjunction = "and"), 

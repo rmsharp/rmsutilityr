@@ -42,3 +42,11 @@ to the \code{path} argument.
 \description{
 Displays selected comments
 }
+\examples{
+files = system.file("testdata", "find_html_comment_test_file_1.Rmd",
+                    package = "rmsutilityr")
+display_selected_code_comments(path = dirname(files),
+                                         pattern = "Rmd",
+                                         label = "RMS")
+
+}

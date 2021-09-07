@@ -12,6 +12,11 @@ r_packages:
     - devtools
     - covr
     - rcmdcheck
+addons:
+  apt:
+    packages:
+      - libharfbuzz-dev
+      - libfribidi-dev
 matrix:
      include:
          - os: osx

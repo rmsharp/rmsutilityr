@@ -32,7 +32,8 @@ knitr::opts_chunk$set(echo = FALSE, cache = TRUE) # show all code
 ```
 ```{r get-stats}
 
-pkgs <- c("futile.logger", "logging", "lgr", "log4r", "logger")
+pkgs <- c("futile.logger", "logging", "lgr", "log4r",
+          " luzlogr", "logger")
 cran_stats_df <- cran_stats(pkgs, use_cache = TRUE)
 licenses_df <- get_pkg_descriptions(pkgs, fields = "License")[["pkg_df"]]
 bad_licenses <- c("AGPL")
@@ -62,8 +63,9 @@ licenses_df <- get_pkg_descriptions(pkgs, fields = "License")$pkg_df
 # Introduction
 The goal of this document is to collect some readily available statistics of
 the logging 
-tools available in R to inform our decisions regarding which tool to use.
-While `r numbers2words(length(cant_use))` of these `r length(pkgs)` packages 
+tools available in R to inform decisions regarding which tool to use.
+While `r numbers2words(length(cant_use))` of these 
+`r numbers2words(length(pkgs))` packages 
 (`r get_and_or_list(cant_use)`) can't be used by
 some businesses because of current licensing 
 (`r get_and_or_list(licenses_df$License[licenses_df$Package %in% cant_use])`),
