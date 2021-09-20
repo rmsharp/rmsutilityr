@@ -10,12 +10,19 @@
 #' @param x scaler that may be integer or number (real).
 #' @export
 numbers2words <- function(x) {
-  helper <- function(x) {
+  helper <- function(x, first_x_len = NULL) {
     digits <- rev(strsplit(as.character(x), "")[[1]])
     nDigits <- length(digits)
+    if (is.null(first_x_len))
+      first_x_len <- nDigits
+    
     if (nDigits == 1)
-      if (x == "0")
-        txt <- as.vector("zero")
+      if (x == "0") {
+        if (first_x_len > 1)
+          txt <- ""
+        else
+          txt <- as.vector("zero")
+      }
       else
         txt <- as.vector(ones[digits])
     else if (nDigits == 2)
@@ -23,19 +30,19 @@ numbers2words <- function(x) {
         as.vector(teens[digits[1]])
     else
       trim(paste(tens[digits[2]],
-                 Recall(as.numeric(digits[1]))))
+                 Recall(as.numeric(digits[1]), first_x_len)))
     else if (nDigits == 3)
       trim(paste(ones[digits[3]], "hundred",
                  # else if (nDigits == 3) trim(paste(ones[digits[3]], "hundred and",
-                 Recall(makeNumber(digits[2:1]))))
+                 Recall(makeNumber(digits[2:1]), first_x_len)))
     else {
       nSuffix <- ((nDigits + 2) %/% 3) - 1
       if (nSuffix > length(suffixes))
         stop(paste(x, "is too large!"))
       trim(paste(
-        Recall(makeNumber(digits[nDigits:(3 * nSuffix + 1)])),
-        suffixes[nSuffix], ",", Recall(makeNumber(digits[(3 * nSuffix):1]))
-      ))
+        Recall(makeNumber(digits[nDigits:(3 * nSuffix + 1)]), first_x_len),
+        suffixes[nSuffix], ",", Recall(makeNumber(digits[(3 * nSuffix):1]),
+                                       first_x_len)))
     }
   }
   trim <- function(text) {
@@ -72,7 +79,7 @@ numbers2words <- function(x) {
       "fourteen",
       "fifteen",
       "sixteen",
-      " seventeen",
+      "seventeen",
       "eighteen",
       "nineteen"
     )
