@@ -2,6 +2,7 @@ context("numbers2words")
 test_that("numbers2words forms the correct expression", {
   num_1 <- 1
   num_12 <- 12
+  num_18 <- 18
   num_123 <- 123 
   num_0 <- 0
   num_0.1 <- 0.1
@@ -32,6 +33,7 @@ test_that("numbers2words forms the correct expression", {
   num_98765432109876543210 <- 98765432109876543210
   expect_equal(numbers2words(num_1), "one")
   expect_equal(numbers2words(num_12), "twelve")
+  expect_equal(numbers2words(num_18), "eighteen")
   expect_equal(numbers2words(num_123), "one hundred twenty three")
   expect_equal(numbers2words(num_0), "zero")
   expect_equal(numbers2words(num_0.1), "zero")
@@ -64,6 +66,7 @@ test_that("numbers2words forms the correct expression", {
     num_9876543210), 
     paste0("nine billion, eight hundred seventy six million, ", 
     "five hundred forty three thousand, two hundred ten"))
-  expect_error(numbers2words(num_98765432109876543210), "98765432109876543488 is too large!")
+  expect_error(numbers2words(num_98765432109876543210), 
+               "98765432109876543488 is too large!")
 })
 
