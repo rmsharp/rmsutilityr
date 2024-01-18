@@ -5,8 +5,6 @@ library(stringi)
  
 
 test_that("classify_code_lines correctly classifies code lines", {
-  library(rmsutilityr)
-  library(stringi)
   file <- system.file("testdata", "classify_code_lines.R", 
                           package = "rmsutilityr")
   test_one <- classify_code_lines(file)
@@ -21,4 +19,10 @@ test_that("classify_code_lines correctly classifies code lines", {
   test_two <- classify_code_lines()
   expect_true(test_two[[2]] > 25)
   expect_error(classify_code_lines(path = "/"), "No files found")
+})
+test_that("classify_code_lines creates a list object", {
+  file <- system.file("testdata", "classify_code_lines.R", 
+                          package = "rmsutilityr")
+  test_one <- classify_code_lines(file)
+  expect_is(test_one, "list")
 })

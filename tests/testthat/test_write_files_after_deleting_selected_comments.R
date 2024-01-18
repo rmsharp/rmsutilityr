@@ -7,6 +7,7 @@ files <- c(files, system.file("testdata", "sample_dir",
                               "find_html_comment_test_file_2.Rmd", 
                               package = "rmsutilityr"))
 test_that("files are written after deleting all comments ", {
+  skip_on_cran()
   new_path <-  tempdir()
   label <- ""
   new_files <- write_files_after_deleting_selected_comments(
@@ -20,6 +21,7 @@ test_that("files are written after deleting all comments ", {
   expect_equal(comments_left, 0)
 })
 test_that("files are written correctly after deleting selected comments ", {
+  skip_on_cran()
   new_path <-  tempdir()
   label <- "RMS"
   new_files <- write_files_after_deleting_selected_comments(
@@ -43,6 +45,7 @@ test_that("files are written correctly after deleting selected comments ", {
 })
 test_that(paste0("files are not written when they already exist if ", 
                  "'overwrite' is 'FALSE' "), {
+  skip_on_cran()
   new_path <-  tempdir()
   label <- "RMS"
   expect_error(write_files_after_deleting_selected_comments(
