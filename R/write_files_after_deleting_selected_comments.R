@@ -43,14 +43,18 @@ make_new_path <- function(new_path) {
     }
   }
 }
-#' Writes lines (contents of a file minuts comments) to a new file.
+#' Writes lines (contents of a file minus comments) to a new file.
 #' 
 #' @returns NULL
 #' 
-#' Reads the \code{original_file} and deleats HTML comments that have the
+#' Reads the \code{original_file} and deletes HTML comments that have the
 #' content of the \code{label} detected. It then writes the modified lines
 #' out to the \code{new_file}.
 #' 
+#' @param original_file Character vector of length one indicating the file
+#' with comments being removed
+#' @param new_file Character vector of length one indicating the revised file
+#' after removal of comments.
 #' @param label Optional regex expression that can be used to limit the 
 #' comments found by adding each element of the character vector in turn 
 #' immediately after "<!--" in the regex expression. The resulting logical

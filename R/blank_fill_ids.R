@@ -10,7 +10,7 @@
 blank_fill_ids <- function(ids, upper = TRUE) {
   if (upper)
     ids <- toupper(stri_trim_both(ids))
-  if (class(ids) == "factor")
+  if (inherits(ids, "factor"))
     ids <- as.character(ids)
   for (i in seq_along(ids)) {
     if (is.na(ids[i]))

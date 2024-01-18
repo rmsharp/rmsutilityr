@@ -2,7 +2,7 @@
 % Please edit documentation in R/write_files_after_deleting_selected_comments.R
 \name{write_lnes_after_deleting_selected_comments}
 \alias{write_lnes_after_deleting_selected_comments}
-\title{Writes lines (contents of a file minuts comments) to a new file.}
+\title{Writes lines (contents of a file minus comments) to a new file.}
 \usage{
 write_lnes_after_deleting_selected_comments(
   original_file,
@@ -13,6 +13,12 @@ write_lnes_after_deleting_selected_comments(
 )
 }
 \arguments{
+\item{original_file}{Character vector of length one indicating the file
+with comments being removed}
+
+\item{new_file}{Character vector of length one indicating the revised file
+after removal of comments.}
+
 \item{label}{Optional regex expression that can be used to limit the 
 comments found by adding each element of the character vector in turn 
 immediately after "<!--" in the regex expression. The resulting logical
@@ -26,10 +32,10 @@ to appear on the line.}
 \value{
 NULL
 
-Reads the \code{original_file} and deleats HTML comments that have the
+Reads the \code{original_file} and deletes HTML comments that have the
 content of the \code{label} detected. It then writes the modified lines
 out to the \code{new_file}.
 }
 \description{
-Writes lines (contents of a file minuts comments) to a new file.
+Writes lines (contents of a file minus comments) to a new file.
 }

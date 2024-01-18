@@ -5,6 +5,7 @@
 #' @param files character vector of full path file names
 #' @param new_path character vector of length one having the new file path
 #' common to be prepended to the relative paths created. Default is ".".
+#' @importFrom utils head
 #' @importFrom stringi stri_split_fixed stri_c
 #' @export
 get_relative_path_file_names <- function(files, new_path = ".") {

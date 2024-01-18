@@ -69,7 +69,9 @@ dataframe with p
 Provides a dataframe of package description fields
 }
 \examples{
+\dontrun{
 write.csv(get_pkg_descriptions(base = TRUE)$pkg_df, 
           file = file.path(tempdir(), "package_list.csv"), 
           row.names = FALSE, quote = FALSE)
+}
 }

@@ -5,7 +5,7 @@
 #' When set to TRUE the function performs a get from CRAN to get a fresh copy
 #' of the database. Default is \code{FALSE}.
 
-#' @return data base from \url{"http://cran.us.r-project.org"}
+#' @return data base from \url{"http://cran.r-project.org"}
 #' @export
 get_cran_db_factory <- function() {
   first <- TRUE

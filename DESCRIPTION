@@ -24,7 +24,9 @@ Imports:
     xtable
 Suggests:
     covr,
+    dlstats,
     roxygen2 (>= 6.0.0),
+    rvcheck,
     pkgdown,
     png,
     testthat
