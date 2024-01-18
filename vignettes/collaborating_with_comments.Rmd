@@ -7,9 +7,8 @@ output:
     highlight: tango
     toc: true
     toc_depth: 2
-    keep_tex: true
-  html_document:
-    df_print: paged
+    keep_tex: false
+    extra_dependencies: ["booktabs", "colortbl", "longtable"]
 vignette: >
   %\VignetteIndexEntry{Using HTML Comments}
   %\usepackage[utf8]{inputenc}

@@ -13,3 +13,13 @@ docs/*
 !docs/*.html
 .Rapp.history
 !inst/extdata/installation.Rmd$
+vignettes/*.log
+vignettes/*.R
+vignettes/*.tex
+vignettes/*_files
+vignettes/*.md
+vignettes/*.toc
+vignettes/*.pdf
+vignettes/*_cache
+vignettes/*.html
+vignettes/logging-package-use-stats_cache/*

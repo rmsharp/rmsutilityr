@@ -8,12 +8,10 @@ output:
         in_header: colortbl_package.sty
     toc: true
     toc_depth: 2
+    keep_tex: false
     number_sections: true
-  bookdown::html_document2: 
-    toc: true
-    toc_depth: 2
 vignette: >
-  %\VignetteIndexEntry{GeneKeepR Tutorial} 
+  %\VignetteIndexEntry{R Logging Package Metrics} 
   %\usepackage[UTF-8]{inputenc}
   %\VignetteEngine{knitr::rmarkdown_notangle} 
 
@@ -27,13 +25,18 @@ library(kableExtra)
 library(rmsutilityr)
 library(rvcheck)
 library(stringi)
+library(utils)
 knitr::opts_chunk$set(echo = FALSE, cache = TRUE) # show all code
+pkgs <- c("futile.logger", "logging", "lgr", "log4r",
+          "luzlogr", "logger")
+
+new.packages <- pkgs[!(pkgs %in% installed.packages()[,"Package"])]
+if(length(new.packages)) 
+  install.packages(new.packages)
 
 ```
-```{r get-stats}
+```{r get-stats, cache = TRUE}
 
-pkgs <- c("futile.logger", "logging", "lgr", "log4r",
-          " luzlogr", "logger")
 cran_stats_df <- cran_stats(pkgs, use_cache = TRUE)
 licenses_df <- get_pkg_descriptions(pkgs, fields = "License")[["pkg_df"]]
 bad_licenses <- c("AGPL")
@@ -45,7 +48,7 @@ require_approval <- licenses_df$Package[
                  type = "fixed")]
 
 get_vignette_counts <- function(pkgs) {
-  vignettes <- vignette(package = pkgs)$results[ , 1]
+  vignettes <- utils::vignette(package = pkgs)$results[ , 1]
   vignette_counts <- data.frame()
   for (pkg in pkgs) {
     vignette_counts <- 
@@ -147,6 +150,7 @@ if (!is.null(cran_stats_df)) {
 
 Reverse dependencies are a strong surrogate for use but not necessarily a 
 strong surrogate for use in important packages or applications.
+
 ```{r define-count-dependencies, cache = TRUE}
 count_dependencies <- 
   function(pkgs, 
@@ -167,6 +171,7 @@ count_dependencies <-
   dependencies_df
 }
 ```
+
 Table \@ref(tab:reverse-dependencies-all) counts all dependences 
 (`r get_and_or_list(c("Depends", "Imports", "LinkingTo", "Suggests", "Enhances"))`
 ), which is not very meaningful since these will include examples of the other
@@ -243,7 +248,7 @@ kbl(get_vignette_counts(pkgs),
 # Licensing
 
 Table \@ref(tab:license) shows the licenses used by each of the `r length(pkgs)`
-packages. Note that the LGPL licesnse is more permissive the GPL licenses.
+packages. Note that the LGPL licesnse is more permissive than the GPL license.
 
 ```{r license}
 caption <- "The license for each package"
