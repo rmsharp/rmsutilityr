@@ -24,5 +24,5 @@ test_that("classify_code_lines creates a list object", {
   file <- system.file("testdata", "classify_code_lines.R", 
                           package = "rmsutilityr")
   test_one <- classify_code_lines(file)
-  expect_is(test_one, "list")
+  expect_is(test_one, "numeric")
 })

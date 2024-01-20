@@ -8,8 +8,11 @@
 ^\.gitignore$
 ^README\.Rmd$
 ^README-.*\.png$
-NEWS.Rmd       # A news file written in RMarkdown
+^NEWS\.Rmd$      # A news file written in RMarkdown
 installation\.Rmd
 _config\.yml
 ^CODE_OF_CONDUCT.md$
 sample_dir
+vignettes/logging-package-use-stats.log
+vignettes/_logging-package-use-stats.Rmd
+inst/extdata/bad_code_needs_work

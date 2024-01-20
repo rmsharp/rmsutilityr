@@ -1,7 +1,7 @@
 ---
 title: "R Logging Package Metrics"
 author: "R. Mark Sharp"
-date: "3/5/2021"
+date: "2024-01-18"
 output:
   bookdown::pdf_document2: 
     includes:
@@ -12,8 +12,8 @@ output:
     number_sections: true
 vignette: >
   %\VignetteIndexEntry{R Logging Package Metrics} 
-  %\usepackage[UTF-8]{inputenc}
-  %\VignetteEngine{knitr::rmarkdown_notangle} 
+  %\usepackage[utf8]{inputenc}
+  %\VignetteEngine{knitr::rmarkdown}
 
 ---
   

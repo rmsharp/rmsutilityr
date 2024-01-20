@@ -46,63 +46,64 @@
 #' @importFrom tools package_dependencies
 #' @importFrom utils packageDescription available.packages
 #' @export
-get_pkg_descriptions <- function(pkgs = NULL, lib.loc = NULL,
-           fields = NULL,
-           base = FALSE, 
-           dependencies = FALSE,
-           which = c("Depends", "Imports", "LinkingTo"),
-           recursive = TRUE, reverse = FALSE, 
-           verbose = getOption("verbose"), new_cran_db = FALSE,
-           get_cran_db = NULL) {
-  possible_fields <- c("Package", "Version", "Priority", "Depends", "Imports", 
-                       "LinkingTo", "Suggests", "Enhances", "License", 
-                       "License_is_FOSS", "License_restricts_use",
-                       "OS_type", "Archs", "MD5sum", "NeedsCompilation", 
-                       "File", "Repository"
-  )
-  if (is.null(fields)) {
-    fields <- possible_fields
-  } else {
-    fields <- unique(c("Package", intersect(fields, possible_fields)))
-  }
-  if (is.null(pkgs))
-    pkgs <- get_pkg_list(base = base)
-  if (is.null(get_cran_db))
-    get_cran_db <- get_cran_db_factory()
-  
-  db = get_cran_db()
-  required <- pkgs
-  
-  if (dependencies) {
-    pkg_dependencies <- tools::package_dependencies(
-      pkgs, db = db,
-      which = which,
-      recursive = recursive, reverse = reverse,
-      verbose = verbose)
-    required <- unique(c(required, sort(unique(unlist(pkg_dependencies)))))
-    pkg_dependencies_df <- make_pkg_dep_df(pkg_dependencies)
-  }
-    
-  packages <- as.data.frame(db, stringsAsFactors = FALSE)
-  pkg_df <- packages[packages$Package %in% required, fields, drop = FALSE]
-  
-  if (dependencies) {
-    pkg_dependencies_df <- merge(pkg_dependencies_df, pkg_df, by.x = "Dependency",
-                               by.y = "Package", all.x = TRUE, sort = FALSE)
-  }
-  pkg_df <- pkg_df[order(pkg_df$Package), ]
-  if (dependencies) {
-    pkg_dependencies_df <-
-      pkg_dependencies_df[order(pkg_dependencies_df$Package, 
-                                pkg_dependencies_df$Dependency),
-                          c("Package", "Dependency", "License")]
-   pkg_dependencies_df <- pkg_dependencies_df[!duplicated(pkg_dependencies_df), ]
-  }
-  pkg_df <- pkg_df[!duplicated(pkg_df), ]
-
-    if (dependencies) {
-    list(pkg_df = pkg_df, pkg_dependencies_df = pkg_dependencies_df)
-  } else {
-    list(pkg_df = pkg_df)
-  }
-}
+#get_pkg_descriptions <- function(pkgs = NULL, lib.loc = NULL,
+#           fields = NULL,
+#           base = FALSE, 
+#           dependencies = FALSE,
+#           which = c("Depends", "Imports", "LinkingTo"),
+#           recursive = TRUE, reverse = FALSE, 
+#           verbose = getOption("verbose"), new_cran_db = FALSE,
+#           get_cran_db = NULL) {
+#  possible_fields <- c("Package", "Version", "Priority", "Depends", "Imports", 
+#                       "LinkingTo", "Suggests", "Enhances", "License", 
+#                       "License_is_FOSS", "License_restricts_use",
+#                       "OS_type", "Archs", "MD5sum", "NeedsCompilation", 
+#                       "File", "Repository"
+#  )
+#  if (is.null(fields)) {
+#    fields <- possible_fields
+#  } else {
+#    fields <- unique(c("Package", intersect(fields, possible_fields)))
+#  }
+#  if (is.null(pkgs))
+#    pkgs <- get_pkg_list(base = base)
+#  if (is.null(get_cran_db))
+#    get_cran_db <- get_cran_db_factory()
+#  
+#  db = get_cran_db()
+#  required <- pkgs
+#  
+#  if (dependencies) {
+#    pkg_dependencies <- tools::package_dependencies(
+#      pkgs, db = db,
+#      which = which,
+#      recursive = recursive, reverse = reverse,
+#      verbose = verbose)
+#    required <- unique(c(required, sort(unique(unlist(pkg_dependencies)))))
+#    pkg_dependencies_df <- make_pkg_dep_df(pkg_dependencies)
+#  }
+#    
+#  packages <- as.data.frame(db, stringsAsFactors = FALSE)
+#  pkg_df <- packages[packages$Package %in% required, fields, drop = FALSE]
+#  
+#  if (dependencies) {
+#    pkg_dependencies_df <- merge(pkg_dependencies_df, pkg_df, by.x = "Dependency",
+#                               by.y = "Package", all.x = TRUE, sort = FALSE)
+#  }
+#  pkg_df <- pkg_df[order(pkg_df$Package), ]
+#  if (dependencies) {
+#    pkg_dependencies_df <-
+#      pkg_dependencies_df[order(pkg_dependencies_df$Package, 
+#                                pkg_dependencies_df$Dependency),
+#                          c("Package", "Dependency", "License")]
+#   pkg_dependencies_df <- pkg_dependencies_df[!duplicated(pkg_dependencies_df), ]
+#  }
+#  pkg_df <- pkg_df[!duplicated(pkg_df), ]
+#
+#    if (dependencies) {
+#    list(pkg_df = pkg_df, pkg_dependencies_df = pkg_dependencies_df)
+#  } else {
+#    list(pkg_df = pkg_df)
+#  }
+#}
+#
