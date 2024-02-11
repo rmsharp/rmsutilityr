@@ -19,6 +19,7 @@ test_that("files are written after deleting all comments ", {
     comments_left <- comments_left + length(lines_and_labels[[1]])
   }
   expect_equal(comments_left, 0)
+  unlink(new_files)
 })
 test_that("files are written correctly after deleting selected comments ", {
   skip_on_cran()
@@ -42,6 +43,7 @@ test_that("files are written correctly after deleting selected comments ", {
     comments_left <- comments_left + length(lines_and_labels[[1]])
   }
   expect_equal(comments_left, 0)
+  unlink(new_files)
 })
 test_that(paste0("files are not written when they already exist if ", 
                  "'overwrite' is 'FALSE' "), {

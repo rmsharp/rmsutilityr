@@ -7,7 +7,7 @@
 get_cran_db_factory()
 }
 \value{
-data base from \url{"https://cran.r-project.org"}
+data base from CRAN
 }
 \description{
 An argument (\code{new_cran_db}; logical) can be used to control whether or 
