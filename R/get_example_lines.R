@@ -1,6 +1,6 @@
 #' Get the examples lines from a source code file.
-#' 
-#' @return Character vector with one lines from the 
+#'
+#' @return Character vector with one lines from the
 #' \code{examples} section of the code.
 #' @description User provides the source code file path. This a a simplistic
 #' function that simply returns lines between \code{@examples} and the next

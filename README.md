@@ -1,8 +1,8 @@
 
-[![Rdoc](http://www.rdocumentation.org/badges/version/roxygen2)](http://www.rdocumentation.org/packages/roxygen2)
+[![Rdoc](https://www.rdocumentation.org/badges/version/roxygen2)](http://www.rdocumentation.org/packages/roxygen2)
 [![Build
-Status](https://travis-ci.org/rmsharp/rmsutilityr.svg?branch=master)](https://travis-ci.org/rmsharp/rmsutilityr)
-[![codecov](https://codecov.io/gh/rmsharp/rmsutilityr/branch/master/graph/badge.svg)](https://codecov.io/gh/rmsharp/rmsutilityr)
+Status](https://app.travis-ci.com/rmsharp/rmsutilityr.svg?branch=master)](https://app.travis-ci.com/rmsharp/rmsutilityr)
+[![codecov](https://codecov.io/gh/rmsharp/rmsutilityr/branch/master/graph/badge.svg)](o%20https://app.codecov.io/gh/rmsharp/rmsutilityr)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 

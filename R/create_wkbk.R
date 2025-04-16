@@ -13,7 +13,7 @@ create_wkbk <- function(file, df_list, sheetnames, create = TRUE) {
   if (length(df_list) != length(sheetnames))
     stop("Number of dataframes does not match number of worksheet names")
 
-  if (file.exists(file) & create)
+  if (file.exists(file) && create)
     file.remove(file)
 
   WriteXLS(x = df_list, ExcelFileName = file, SheetNames = sheetnames,

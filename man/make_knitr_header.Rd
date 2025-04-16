@@ -2,16 +2,7 @@
 % Please edit documentation in R/make_knitr_header.R
 \name{make_knitr_header}
 \alias{make_knitr_header}
-\title{Assumes the presence of the LaTeX package \code{titling} with the new command
-\code{\\subtitle}.
-\\usepackage{titling}
-\\newcommand{\\subtitle}[1]{%
-  \\posttitle{%
-    \\par\\end{center}
-    \\begin{center}\\large#1\\end{center}
-    \\vskip0.5em}%
-}
-Capitalization is not modified by this function.}
+\title{Assumes the presence of the LaTeX package \code{titling} with the new command}
 \usage{
 make_knitr_header(
   title_str = "",
@@ -29,14 +20,16 @@ subtitle}
 author(s). Has default.}
 }
 \description{
-Assumes the presence of the LaTeX package \code{titling} with the new command
 \code{\\subtitle}.
 \\usepackage{titling}
 \\newcommand{\\subtitle}[1]{%
   \\posttitle{%
     \\par\\end{center}
     \\begin{center}\\large#1\\end{center}
-    \\vskip0.5em}%
+    \\vskip{0.5em}%
+    }
 }
+}
+\details{
 Capitalization is not modified by this function.
 }

@@ -38,7 +38,6 @@ You can install **rmsutilityr** from github with:
 ```{r gh-installation, eval = FALSE}
 install.packages("devtools")
 devtools::install_github("rmsharp/rmsutilityr")
-
 ```
 
 All missing dependencies should be automatically installed.

@@ -1,10 +1,10 @@
 #' Captitalize first letter of each word in a character string
-#' 
+#'
 #' @return character string with first character of each word capitalized and
 #' remaining characters either left alone or are forced to lower case.
-#' 
+#'
 #' In many cases the user will want to use \code{tools::toTitleCase} instead.
-#' 
+#'
 #' @examples
 #' library(stringi, quietly = TRUE)
 #' capitalize_first_letter(words = c("a", "vector of words",

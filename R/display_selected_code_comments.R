@@ -1,9 +1,9 @@
 #' Displays selected comments
-#' 
-#' @returns Dataframe of selected comments with the base file name, the 
+#'
+#' @returns Dataframe of selected comments with the base file name, the
 #' comment label, the comment start line, and the comment text.
-#' 
-#' Internally uses the \code{list.files} function with the \code{path} and 
+#'
+#' Internally uses the \code{list.files} function with the \code{path} and
 #' \code{pattern} arguments as defined in the call. Other arguments to
 #' \code{list.files} are forced as follows:
 #' \describe{
@@ -17,22 +17,22 @@
 #' The user is free to create the list of files anyway desired and provide them
 #' to the \code{path} argument.
 
-#' @examples 
+#' @examples
 #' files = system.file("testdata", "find_html_comment_test_file_1.Rmd",
 #'                     package = "rmsutilityr")
 #' display_selected_code_comments(path = dirname(files),
 #'                                          pattern = "Rmd",
 #'                                          label = "RMS")
 #' 
-#' @param path a character vector of full path names; the default corresponds to 
-#' the working directory, getwd(). Tilde expansion (see path.expand) is 
-#' performed. Missing values will be ignored. 
-#' Elements with a marked encoding will be converted to the native encoding 
+#' @param path a character vector of full path names; the default corresponds to
+#' the working directory, getwd(). Tilde expansion (see path.expand) is
+#' performed. Missing values will be ignored.
+#' Elements with a marked encoding will be converted to the native encoding
 #' (and if that fails, considered non-existent). Defaults to ".".
-#' @param pattern an optional regular expression. Only file names which match the 
-#' regular expression will be returned.
-#' @param label Optional regex expression that can be used to limit the 
-#' comments found by adding each element of the character vector in turn 
+#' @param pattern an optional regular expression. Only file names which match
+#' the regular expression will be returned.
+#' @param label Optional regex expression that can be used to limit the
+#' comments found by adding each element of the character vector in turn
 #' immediately after "<!--" in the regex expression. The resulting logical
 #' vectors are OR'd together to combine their results.
 #' @importFrom kableExtra kbl kable_styling column_spec
@@ -56,11 +56,11 @@ display_selected_code_comments <-
       get_html_comment_text_lines_and_labels_from_files(files, label = label)
     
     caption <-
-        stri_c("Output of the ",
-          "get\\_html\\_comment\\_text\\_lines\\_and\\_labels\\_from\\_files ",
-          "function includes text of comments from selected ",
-          "comment labels.")
-
+      stri_c("Output of the ",
+             "get\\_html\\_comment\\_text\\_lines\\_and\\_labels\\_from\\_files ",
+             "function includes text of comments from selected ",
+             "comment labels.")
+    
     selected_code_comments <-
       html_comment_lines_and_labels[, c("file",
                                         "comment_label",

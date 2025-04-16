@@ -7,7 +7,7 @@
 expunge_names <- function(names_str, expunge_str = c(), lower = TRUE) {
   if (lower)
     names_str <- tolower(names_str)
-  
+
   for (expunge_string in expunge_str) {
     names_str <- remove_string(names_str, expunge_string)
   }

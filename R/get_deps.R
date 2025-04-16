@@ -1,15 +1,15 @@
 #' Get Package Dependencies
-#' 
+#'
 #' @return Character vector of package dependencies based on the contents of
 #' the \code{DESCRIPTION} file.
-#' 
+#'
 #'
 #' Written by Josh O'Brien on stackoverflow on May 13 '15 at 21:42
 #' @param path character vector of length one having the directory path to
-#' where new version of the custom package exists. This can be the 
+#' where new version of the custom package exists. This can be the
 #' full path name of the directory in which the package exists or the full
 #' path name of the source version of the package.
-#' @examples 
+#' @examples
 #' \dontrun{
 #' library(rmsutilityr)
 #' ## Directory where package is placed when installed.
@@ -30,9 +30,9 @@ get_deps <- function(path) {
   val <- unlist(strsplit(dcf[, jj], ","), use.names = FALSE)
   val <- gsub("\\s.*", "", trimws(val))
   val <- val[val != "R"]
-  val <- remove_these_str(.str = val, 
-                          expunge = c("base", "datasets", "graphics", 
-                                      "grDevices", "methods", "stats", "tools", 
+  val <- remove_these_str(.str = val,
+                          expunge = c("base", "datasets", "graphics",
+                                      "grDevices", "methods", "stats", "tools",
                                       "utils"), ignore_case = FALSE)
   val
 }

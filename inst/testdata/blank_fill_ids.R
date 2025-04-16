@@ -17,7 +17,7 @@ blank_fill_ids <- function(ids, upper = TRUE) {
     if (is.na(ids[i]))
       next
 
-    if (stri_length(ids[i]) > 6 | stri_length(ids[i]) < 3)
+    if (stri_length(ids[i]) > 6 || stri_length(ids[i]) < 3)
       warning(stri_c("Id size out of range. i is ", i,
                      " stri_length(ids[[i]]) is ",
                      stri_length(ids[[i]]),

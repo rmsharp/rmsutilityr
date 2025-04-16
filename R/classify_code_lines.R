@@ -11,20 +11,20 @@
 #' @import stringi
 #' @export
 classify_code_lines <- function(files = ".", path = NULL) {
-  if (files[1] == "." & length(files) == 1 & is.null(path)) {
+  if (files[1] == "." && length(files) == 1 && is.null(path)) {
     files <- list.files(path = ".", full.names = TRUE)
   }
   if (!is.null(path)) {
     files <- stri_c(path, "/", files)
     files <- stri_replace_all_fixed(files, pattern = "//", replacement = "/")
   }
-  
+
   file_list <- is_file(files, no_files_stop = FALSE)
   if (!file_list$exist) { # May be path argument
     files <- list.files(path = files, full.names = TRUE)
     file_list <- is_file(files, no_files_stop = TRUE)
   }
-  
+
   count <- 0
   code <- 0
   comments <- 0

@@ -1,4 +1,5 @@
-#' Returns a character vector with an Excel complient name having the date prepended.
+#' Returns a character vector with an Excel complient name having the date
+#' prepended.
 #'
 #' @param data_set_name character vector with name to use in file name
 #' @export

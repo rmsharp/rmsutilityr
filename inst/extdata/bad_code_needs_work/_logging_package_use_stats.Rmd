@@ -30,8 +30,8 @@ knitr::opts_chunk$set(echo = FALSE, cache = TRUE) # show all code
 pkgs <- c("futile.logger", "logging", "lgr", "log4r",
           "luzlogr", "logger")
 
-new.packages <- pkgs[!(pkgs %in% installed.packages()[,"Package"])]
-if(length(new.packages)) 
+new.packages <- pkgs[!(pkgs %in% installed.packages()[, "Package"])]
+if (length(new.packages))
   install.packages(new.packages)
 
 ```
@@ -44,20 +44,20 @@ require_approval_licenses <- c("LGPL")
 cant_use <- licenses_df$Package[
   str_detect_any(licenses_df$License, pattern = bad_licenses, type = "fixed")]
 require_approval <- licenses_df$Package[
-  str_detect_any(licenses_df$License, pattern = require_approval_licenses, 
+  str_detect_any(licenses_df$License, pattern = require_approval_licenses,
                  type = "fixed")]
 
 get_vignette_counts <- function(pkgs) {
-  vignettes <- utils::vignette(package = pkgs)$results[ , 1]
+  vignettes <- utils::vignette(package = pkgs)$results[, 1]
   vignette_counts <- data.frame()
   for (pkg in pkgs) {
-    vignette_counts <- 
-      rbind(vignette_counts, 
+    vignette_counts <-
+      rbind(vignette_counts,
             data.frame(Package = pkg,
                        Count = sum(vignettes == pkg)))
   }
   vignette_counts
-} 
+}
 licenses_df <- get_pkg_descriptions(pkgs, fields = "License")$pkg_df
 
 ```
@@ -108,28 +108,28 @@ third is part of the core package set. See Table \@ref(tab:latest-updates).
 suppressMessages(library(rvest))
 library(ggplot2)
 
-url = 'https://cran.r-project.org/web/packages/available_packages_by_date.html'
+url <-
+  "https://cran.r-project.org/web/packages/available_packages_by_date.html"
 
 CRANpage <- read_html(url)
-tbls <- html_nodes(CRANpage, "table") # since HTML is in table; no need to scrape td/tr elements
+# since HTML is in table; no need to scrape td/tr elements
+tbls <- html_nodes(CRANpage, "table")
 table_1 <- html_table(tbls[1], fill = TRUE)
 loggers_pkgs <- table_1[[1]][table_1[[1]]$Package %in% pkgs, ]
 
 #house cleaning
 loggers_pkgs$Date <- as.Date(loggers_pkgs$Date)
 caption <- "Most recent updates of packages."
-kbl(loggers_pkgs[ , c("Package", "Date")],
+kbl(loggers_pkgs[, c("Package", "Date")],
     format = ifelse(knitr::is_latex_output(), "latex", "html"),
     booktabs = TRUE, caption = caption,
     row.names = FALSE,
     col.names = c("Package", "Latest Update"),
-    longtable = TRUE) %>% 
-  kable_styling(latex_options = c("repeat_header", "striped"), 
+    longtable = TRUE) %>%
+  kable_styling(latex_options = c("repeat_header", "striped"),
                 font_size = ifelse(knitr::is_latex_output(), 8, 12)) %>%
   column_spec(1, width = "15em") %>%
-  column_spec(2, width = "15em") 
-
-
+  column_spec(2, width = "15em")
 ```
 
 # Downloads

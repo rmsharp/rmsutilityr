@@ -1,8 +1,11 @@
 #' Returns a character string of xtable format statements split up from a format
 #' statement based on the number of centimeters indicated by the parameter cm
 #'
-#' Example fmt:
+#' @examples
+#' library(rmsutilityr)
+#' library(stringi)
 #' fmt <- stri_c("p{1cm}p{2.5cm}p{1cm}p{1cm}p{2cm}p{1cm}p{6cm}p{1cm}p{2cm}")
+#' split_fmt <- get_split_format(fmt, cm = 15)
 #' 
 #' @param fmt source format statement
 #' @param cm number of centimeters format statement are to fit within

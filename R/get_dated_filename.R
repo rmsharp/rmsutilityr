@@ -1,7 +1,8 @@
 #' Returns a character vector with an file name having the date prepended.
 #'
 #' @param filename character vector with name to use in file name
-#' @import lubridate
+#' @importFrom lubridate now
+#' @importFrom stringi stri_replace_all_fixed
 #' @export
 get_dated_filename <- function(filename) {
   date_stamp <- stri_replace_all_fixed(

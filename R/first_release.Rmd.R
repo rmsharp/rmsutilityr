@@ -1,10 +1,12 @@
 library(rvest)
 library(ggplot2)
 
-url = 'https://cran.r-project.org/web/packages/available_packages_by_date.html'
+url <-
+  "https://cran.r-project.org/web/packages/available_packages_by_date.html"
 
 CRANpage <- read_html(url)
-tbls <- html_nodes(CRANpage, "table") # since HTML is in table; no need to scrape td/tr elements
+# since HTML is in table; no need to scrape td/tr elements
+tbls <- html_nodes(CRANpage, "table")
 table1 <- html_table(tbls[1], fill = TRUE)
 dd <- data.frame(table1[1])
 
@@ -25,7 +27,7 @@ library(lubridate)
 
 # updates by year
 dd_y <- dd %>%
-  mutate( PYear= year(Date)) %>%
+  mutate(PYear = year(Date)) %>%
   select (PYear) %>%
   group_by(PYear) %>%
   summarise(
